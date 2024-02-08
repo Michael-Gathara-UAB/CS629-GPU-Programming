@@ -10,9 +10,9 @@
 void checkCUDAError(const char*);
 void random_matrix(int *a, int n);
 void matrixAddCPU(int *a, int *b, int *c, int max);
-int validate(int *c, int *c_ref, int max);
 
 __global__ void matrixAdd(int *a, int *b, int *c, int max) {
+    // https://users.wfu.edu/choss/CUDA/docs/Lecture%205.pdf
     int row = blockIdx.y * blockDim.y + threadIdx.y;
     int col = blockIdx.x * blockDim.x + threadIdx.x;
     int index = row * max + col;
