@@ -4,11 +4,10 @@
 #include "cuda_runtime.h"
 #include "device_launch_parameters.h"
 
-//The number of character in the encrypted text
-constexpr int N = 1024;
-constexpr int A_INV = 111;
-constexpr int B = 27;
-constexpr int M = 128;
+#define N 1024
+#define A_INV 111
+#define B 27
+#define M 128 
 
 void checkCUDAError(const char*);
 void read_encrypted_file(int*);
@@ -93,7 +92,7 @@ void checkCUDAError(const char *msg) {
 
 void read_encrypted_file(int* input) {
 	FILE *f = NULL;
-  f = fopen("/content/drive/MyDrive/Colab\ Notebooks/CS629/Lab1/encrypted01.bin", "rb");
+  	f = fopen("encrypted01.bin", "rb");
 	if (f == NULL){
 		fprintf(stderr, "Error: Could not find encrypted01.bin file \n");
 		exit(1);
