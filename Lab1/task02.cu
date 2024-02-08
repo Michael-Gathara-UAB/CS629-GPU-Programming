@@ -4,7 +4,7 @@
 #include "cuda_runtime.h"
 #include "device_launch_parameters.h"
 
-#define N 2048
+#define N 2050
 #define THREADS_PER_BLOCK 128
 
 void checkCUDAError(const char*);

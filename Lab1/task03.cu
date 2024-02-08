@@ -9,30 +9,30 @@
 
 void checkCUDAError(const char*);
 void random_matrix(int *a, int n);
-void matrixAddCPU(int *a, int *b, int *c, int n);
-int validate(int *c, int *c_ref, int n);
+void matrixAddCPU(int *a, int *b, int *c, int max);
+int validate(int *c, int *c_ref, int max);
 
-__global__ void matrixAdd(int *a, int *b, int *c, int n) {
+__global__ void matrixAdd(int *a, int *b, int *c, int max) {
     int row = blockIdx.y * blockDim.y + threadIdx.y;
     int col = blockIdx.x * blockDim.x + threadIdx.x;
-    int index = row * n + col;
-    if (row < n && col < n) {
+    int index = row * max + col;
+    if (row < max && col < max) {
         c[index] = a[index] + b[index];
     }
 }
 
-void matrixAddCPU(int *a, int *b, int *c, int n) {
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < n; j++) {
-            int index = i * n + j;
+void matrixAddCPU(int *a, int *b, int *c, int max) {
+    for (int i = 0; i < max; i++) {
+        for (int j = 0; j < max; j++) {
+            int index = i * max + j;
             c[index] = a[index] + b[index];
         }
     }
 }
 
-int validate(int *c, int *c_ref, int n) {
+int validate(int *c, int *c_ref, int max) {
     int e = 0;
-    for (int i = 0; i < n * n; i++) {
+    for (int i = 0; i < max * max; i++) {
         if (c[i] != c_ref[i]) {
             printf("Error at %d: GOT {%d} in GPU and GOT {%d} in CPU\n", i, c[i], c_ref[i]);
             e++;
@@ -42,8 +42,8 @@ int validate(int *c, int *c_ref, int n) {
 }
 
 int main(void) {
-    int *a, *b, *c, *c_ref;                 // host copies
-    int *d_a, *d_b, *d_c;                   // device copies
+    int *a, *b, *c, *c_ref;     
+    int *d_a, *d_b, *d_c;                   
     int errors;
     unsigned int size = N * N * sizeof(int);
 
@@ -62,8 +62,7 @@ int main(void) {
     checkCUDAError("CUDA memcpy");
 
     dim3 threadsPerBlock(BLOCK_SIZE, BLOCK_SIZE);
-    dim3 blocksPerGrid((N + threadsPerBlock.x - 1) / threadsPerBlock.x,
-                       (N + threadsPerBlock.y - 1) / threadsPerBlock.y);
+    dim3 blocksPerGrid((N + threadsPerBlock.x - 1) / threadsPerBlock.x, (N + threadsPerBlock.y - 1) / threadsPerBlock.y);
     matrixAdd<<<blocksPerGrid, threadsPerBlock>>>(d_a, d_b, d_c, N);
 
     cudaDeviceSynchronize();
@@ -93,7 +92,7 @@ void checkCUDAError(const char *msg) {
 
 void random_matrix(int *a, int n) {
     for (unsigned int i = 0; i < n * n; i++) {
-        a[i] = rand() % 100; // Assigning random values up to 100 for simplicity
+        a[i] = rand();
     }
 }
 
