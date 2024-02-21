@@ -1,107 +1,108 @@
+/*
+Author: Michael Gathara (mikegtr at uab dot edu)*/
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
 #include "cuda_runtime.h"
 #include "device_launch_parameters.h"
 
-#define N 8
-#define K 8
-#define M 8
-#define BLOCK_SIZE 16 
+#define BLOCK_SIZE 16  
 
-void checkCUDAError(const char*);
-void random_matrix(float *a, int n);
+__global__ void matrixMultGPUKernel(float *a, float *b, float *c, int m, int k, int n) {
+    int row = blockIdx.y * blockDim.y + threadIdx.y;
+    int col = blockIdx.x * blockDim.x + threadIdx.x;
+    if(row < m && col < n) {
+        float sum = 0.0;
+        for (int i = 0; i < k; ++i) {
+            sum += a[row * k + i] * b[i * n + col];
+        }
+        c[row * n + col] = sum;
+    }
+}
 
-void matrixMultCPU(float *a, float *b, float *c, int n) {
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < n; j++) {
-            float sum = 0;
-            for (int k = 0; k < n; k++) {
-                sum += a[i * n + k] * b[k * n + j];
+void matrixMultCPU(float *a, float *b, float *c, int m, int k, int n) {
+    for (int i = 0; i < m; ++i) {
+        for (int j = 0; j < n; ++j) {
+            float sum = 0.0;
+            for (int x = 0; x < k; ++x) {
+                sum += a[i * k + x] * b[x * n + j];
             }
             c[i * n + j] = sum;
         }
     }
 }
 
-__global__ 
-void matrixMultGPUKernel(float *a, float *b, float *c, int n) {
-    int row = blockIdx.y * blockDim.y + threadIdx.y;
-    int col = blockIdx.x * blockDim.x + threadIdx.x;
-    float tmp = 0.0f;
-    if (row < n && col < n) {
-        for (int i = 0; i < n; i++) {
-           tmp += a[row * n + i] * b[i * n + col];
-        }
+void random_matrix(int *arr, int n) {
+    for (unsigned int i = 0; i < n * n; i++) {
+        arr[i] = rand() % 10001 / 10000.0;
     }
-    c[row * n + col] = tmp;
 }
 
-int validate(float *c, float *c_ref, int N) {
-    int e = 0;
-    for (int i = 0; i < N * N; i++) {
-        if (c[i] != c_ref[i]) {
-            printf("Error at %d: GOT {%d} in GPU and GOT {%d} in CPU\n", i, c[i], c_ref[i]);
-            e++;
+int validate(float *c_gpu, float *c_cpu, int m, int n) {
+    int errors = 0;
+    for (int i = 0; i < m * n; i++) {
+        // https://www.oreilly.com/library/view/c-in-a/0596006977/re57.html#:~:text=The%20fabs()%20function%20returns,%2C%20the%20function%20returns%20%2Dx%20.
+        // Used the above link for fabs
+        if (fabs(c_gpu[i] - c_cpu[i]) > 1e-6) {
+            errors++;
+            printf("Mismatch at %d: GPU = %f, CPU = %f\n", i, c_gpu[i], c_cpu[i]);
         }
     }
-    return e;
+    return errors;
 }
 
-int main(void) {
-    float *a, *b, *c, *c_ref;     
-    float *d_a, *d_b, *d_c;                   
-    int errors;
-    unsigned int size = N * N :wq
+int main() {
+    constexpr lim = 10;
+    constexpr m = lim, k = lim, n = lim; 
+    size_t a_size = m * k * sizeof(float);
+    size_t b_size = k * n * sizeof(float);
+    size_t c_size = m * n * sizeof(float);
 
-    cudaMalloc((void **)&d_a, size);
-    cudaMalloc((void **)&d_b, size);
-    cudaMalloc((void **)&d_c, size);
-    checkCUDAError("CUDA malloc");
+    float *a, *b, *c_gpu, *c_cpu;
+    a = (float*)malloc(a_size);
+    b = (float*)malloc(b_size);
+    c_gpu = (float*)malloc(c_size);
+    c_cpu = (float*)malloc(c_size);
 
-    constexpr A_size = M * K;
-    constexpr B_size = K * N;
-    constexpr C_size = M * N;
+    randomMatrix(a, m, k);
+    randomMatrix(b, k, n);
 
-    a = (float *)malloc(A_size); random_matrix(a, N);
-    b = (float *)malloc(B_size); random_matrix(b, N);
-    c = (float *)malloc(C_size);
-    c_ref = (float *)malloc(size);
+    float *d_a, *d_b, *d_c;
+    cudaMalloc(&d_a, a_size);
+    cudaMalloc(&d_b, b_size);
+    cudaMalloc(&d_c, c_size);
 
-    cudaMemcpy(d_a, a, size, cudaMemcpyHostToDevice);
-    cudaMemcpy(d_b, b, size, cudaMemcpyHostToDevice);
-    checkCUDAError("CUDA memcpy");
+    cudaMemcpy(d_a, a, a_size, cudaMemcpyHostToDevice);
+    cudaMemcpy(d_b, b, b_size, cudaMemcpyHostToDevice);
 
-   	 
-    dim3 threadsPerBlock(N, N);
-    dim3 blocksPerGrid((N + threadsPerBlock.x - 1) / threadsPerBlock.x, (N + threadsPerBlock.y - 1) / threadsPerBlock.y);
-    matrixAdd<<<blocksPerGrid, threadsPerBlock>>>(d_a, d_b, d_c, N);
+    dim3 threads(BLOCK_SIZE, BLOCK_SIZE);
+    dim3 grid((n + BLOCK_SIZE - 1) / BLOCK_SIZE, (m + BLOCK_SIZE - 1) / BLOCK_SIZE);
 
-    cudaDeviceSynchronize();
-    checkCUDAError("CUDA kernel");
+    cudaEvent_t start, stop;
+    cudaEventCreate(&start);
+    cudaEventCreate(&stop);
+    cudaEventRecord(start);
 
-    cudaMemcpy(c, d_c, size, cudaMemcpyDeviceToHost);
-    checkCUDAError("CUDA memcpy");
+    matrixMultGPUKernel<<<grid, threads>>>(d_a, d_b, d_c, m, k, n);
 
-    errors = validate(c, c_ref);
-    free(a); free(b); free(c); free(c_ref);
+    cudaEventRecord(stop);
+    cudaEventSynchronize(stop);
+
+    float milliseconds = 0;
+    cudaEventElapsedTime(&milliseconds, start, stop);
+
+    cudaMemcpy(c_gpu, d_c, c_size, cudaMemcpyDeviceToHost);
+    matrixMultCPU(a, b, c_cpu, m, k, n);
+
+    int errors = validate(c_gpu, c_cpu, m, n);
+
+    float gflops = (m * k * n * 2.0f) / (milliseconds / 1000.0f) / 1e9;
+    printf("GFLOPS: %f\n", gflops);
+
+    free(a); free(b); free(c_gpu); free(c_cpu);
     cudaFree(d_a); cudaFree(d_b); cudaFree(d_c);
-    checkCUDAError("CUDA cleanup");
+    cudaEventDestroy(start); cudaEventDestroy(stop);
 
     return 0;
 }
-
-void checkCUDAError(const char *msg) {
-    cudaError_t err = cudaGetLastError();
-    if (cudaSuccess != err) {
-        fprintf(stderr, "CUDA ERROR: %s: %s.\n", msg, cudaGetErrorString(err));
-        exit(EXIT_FAILURE);
-    }
-}
-
-void random_matrix(int *a, int n) {
-    for (unsigned int i = 0; i < n * n; i++) {
-        a[i] = rand() % 10001 / 10000.0;
-    }
-}
-
