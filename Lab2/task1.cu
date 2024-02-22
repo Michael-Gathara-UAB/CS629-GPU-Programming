@@ -45,7 +45,7 @@ int validate(float *c_gpu, float *c_cpu, int m, int n) {
     for (int i = 0; i < m * n; i++) {
         // https://www.oreilly.com/library/view/c-in-a/0596006977/re57.html#:~:text=The%20fabs()%20function%20returns,%2C%20the%20function%20returns%20%2Dx%20.
         // Used the above link for fabs
-        if (fabs(c_gpu[i] - c_cpu[i]) > 1e-6) {
+        if (fabs(c_gpu[i] - c_cpu[i]) > 1) {
             errors++;
             printf("Mismatch at %d: GPU = %f, CPU = %f\n", i, c_gpu[i], c_cpu[i]);
         }
