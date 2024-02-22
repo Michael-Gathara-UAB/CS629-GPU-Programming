@@ -7,19 +7,41 @@ Author: Michael Gathara (mikegtr at uab dot edu)*/
 #include "cuda_runtime.h"
 #include "device_launch_parameters.h"
 
-#define BLOCK_SIZE 16  
-void random_matrix(int *arr, int n);
+__global__ 
+void matrixMultGPUKernel(float *a, float *b, float *c, int m, int k, int n, int blockSize) {
+    int tx = threadIdx.x;
+    int ty = threadIdx.y;
 
-__global__ void matrixMultGPUKernel(float *a, float *b, float *c, int m, int k, int n) {
-    int row = blockIdx.y * blockDim.y + threadIdx.y;
-    int col = blockIdx.x * blockDim.x + threadIdx.x;
-    if(row < m && col < n) {
-        float sum = 0.0;
-        for (int i = 0; i < k; ++i) {
-            sum += a[row * k + i] * b[i * n + col];
+    int row = blockIdx.y * blockSize + ty;
+    int col = blockIdx.x * blockSize + tx;
+    float sum = 0.0f;
+    
+    __shared__ float a_shared[blockSize][blockSize];
+    __shared__ float b_shared[blockSize][blockSize];
+
+    for (int t = 0; t < (k - 1) / blockSize + 1; ++t) {
+        if (row < m && t * blockSize + tx < k) {
+            a_shared[ty][tx] = a[row * k + t * blockSize + tx];
+        } else {
+            a_shared[ty][tx] = 0.0f;
         }
+        if (col < n && t * blockSize + ty < k) {
+            b_shared[ty][tx] = b[(t * blockSize + ty) * n + col];
+        } else {
+            b_shared[ty][tx] = 0.0f;
+        }
+        __syncthreads();
+
+        for (int i = 0; i < blockSize; ++i) {
+            sum += a_shared[ty][i] * b_shared[i][tx];
+        }
+        __syncthreads();
+    }
+
+    if (row < m && col < n) {
         c[row * n + col] = sum;
     }
+
 }
 
 void matrixMultCPU(float *a, float *b, float *c, int m, int k, int n) {
@@ -46,7 +68,7 @@ int validate(float *c_gpu, float *c_cpu, int m, int n) {
         // https://www.oreilly.com/library/view/c-in-a/0596006977/re57.html#:~:text=The%20fabs()%20function%20returns,%2C%20the%20function%20returns%20%2Dx%20.
         // Used the above link for fabs
         if (fabs(c_gpu[i] - c_cpu[i]) > 1) {
-            // There might be soem floating point errors so I'm only checking to make sure the whole number section is the same
+            // There might be soem floating point errors so I'm only checking to make sure the whole number part is eq
             errors++;
             printf("Mismatch at %d: GPU = %f, CPU = %f\n", i, c_gpu[i], c_cpu[i]);
         }
@@ -89,7 +111,7 @@ int main() {
         cudaEventCreate(&stop);
         cudaEventRecord(start);
 
-        matrixMultGPUKernel<<<grid, threads>>>(d_a, d_b, d_c, m, k, n);
+        matrixMultGPUKernel<<<grid, threads>>>(d_a, d_b, d_c, m, k, n, blockSize);
 
         cudaEventRecord(stop);
         cudaEventSynchronize(stop);
