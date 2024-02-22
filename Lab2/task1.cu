@@ -46,6 +46,7 @@ int validate(float *c_gpu, float *c_cpu, int m, int n) {
         // https://www.oreilly.com/library/view/c-in-a/0596006977/re57.html#:~:text=The%20fabs()%20function%20returns,%2C%20the%20function%20returns%20%2Dx%20.
         // Used the above link for fabs
         if (fabs(c_gpu[i] - c_cpu[i]) > 1) {
+            // There might be soem floating point errors so I'm only checking to make sure the whole number section is the same
             errors++;
             printf("Mismatch at %d: GPU = %f, CPU = %f\n", i, c_gpu[i], c_cpu[i]);
         }
@@ -77,34 +78,40 @@ int main() {
     cudaMemcpy(d_a, a, a_size, cudaMemcpyHostToDevice);
     cudaMemcpy(d_b, b, b_size, cudaMemcpyHostToDevice);
 
-    dim3 threads(BLOCK_SIZE, BLOCK_SIZE);
-    dim3 grid((n + BLOCK_SIZE - 1) / BLOCK_SIZE, (m + BLOCK_SIZE - 1) / BLOCK_SIZE);
+    int blockSizeArray[] = {8, 16, 32};
+    for (int blockSizeIndex = 0; blockSizeIndex < 3; blockSizeIndex++) {
+        int blockSize = blockSizeArray[blockSizeIndex];
+        dim3 threads(blockSize, blockSize);
+        dim3 grid((n + blockSize - 1) / blockSize, (m + blockSize - 1) / blockSize);
 
-    cudaEvent_t start, stop;
-    cudaEventCreate(&start);
-    cudaEventCreate(&stop);
-    cudaEventRecord(start);
+        cudaEvent_t start, stop;
+        cudaEventCreate(&start);
+        cudaEventCreate(&stop);
+        cudaEventRecord(start);
 
-    matrixMultGPUKernel<<<grid, threads>>>(d_a, d_b, d_c, m, k, n);
+        matrixMultGPUKernel<<<grid, threads>>>(d_a, d_b, d_c, m, k, n);
 
-    cudaEventRecord(stop);
-    cudaEventSynchronize(stop);
+        cudaEventRecord(stop);
+        cudaEventSynchronize(stop);
 
-    float milliseconds = 0;
-    cudaEventElapsedTime(&milliseconds, start, stop);
+        float milliseconds = 0;
+        cudaEventElapsedTime(&milliseconds, start, stop);
 
-    cudaMemcpy(c_gpu, d_c, c_size, cudaMemcpyDeviceToHost);
-    matrixMultCPU(a, b, c_cpu, m, k, n);
+        cudaMemcpy(c_gpu, d_c, c_size, cudaMemcpyDeviceToHost);
+        matrixMultCPU(a, b, c_cpu, m, k, n);
 
-    int errors = validate(c_gpu, c_cpu, m, n);
-		printf("There were %d errors", errors);
+        int errors = validate(c_gpu, c_cpu, m, n);
+        printf("Block size %dx%d, Errors: %d\n", blockSize, blockSize, errors);
 
-    float gflops = (m * k * n * 2) / 1e9  / (milliseconds / 1000);
-    printf("\nGFLOPS: %f\n", gflops);
+        float gflops = (m * k * n * 2.0) / 1e9 / (milliseconds / 1000);
+        printf("Block size %dx%d, GFLOPS: %f\n", blockSize, blockSize, gflops);
+
+        cudaEventDestroy(start);
+        cudaEventDestroy(stop);
+    }
 
     free(a); free(b); free(c_gpu); free(c_cpu);
     cudaFree(d_a); cudaFree(d_b); cudaFree(d_c);
-    cudaEventDestroy(start); cudaEventDestroy(stop);
 
     return 0;
 }
