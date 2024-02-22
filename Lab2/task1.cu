@@ -55,7 +55,7 @@ int validate(float *c_gpu, float *c_cpu, int m, int n) {
 }
 
 int main() {
-    int lim = 128;
+    int lim = 10000;
     unsigned int m = lim, k = lim, n = lim; 
     size_t a_size = m * k * sizeof(float);
     size_t b_size = k * n * sizeof(float);
