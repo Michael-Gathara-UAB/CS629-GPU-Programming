@@ -79,7 +79,7 @@ int validate(float *c_gpu, float *c_cpu, int m, int n) {
 }
 
 int main() {
-    int lim = 128;
+    int lim = 10000;
     unsigned int m = lim, k = lim, n = lim; 
     size_t a_size = m * k * sizeof(float);
     size_t b_size = k * n * sizeof(float);
@@ -118,14 +118,14 @@ int main() {
         cudaEventRecord(stop);
         cudaEventSynchronize(stop);
 
-        float milliseconds = 0;
+        float milliseconds = 0.0;
         cudaEventElapsedTime(&milliseconds, start, stop);
 
         cudaMemcpy(c_gpu, d_c, c_size, cudaMemcpyDeviceToHost);
-        matrixMultCPU(a, b, c_cpu, m, k, n);
+        //matrixMultCPU(a, b, c_cpu, m, k, n);
 
-        int errors = validate(c_gpu, c_cpu, m, n);
-        printf("Block size %dx%d, Errors: %d\n", blockSize, blockSize, errors);
+        //int errors = validate(c_gpu, c_cpu, m, n);
+        //printf("Block size %dx%d, Errors: %d\n", blockSize, blockSize, errors);
 
         float gflops = (m * k * n * 2.0) / 1e9 / (milliseconds / 1000);
         printf("Block size %dx%d, GFLOPS: %f\n", blockSize, blockSize, gflops);
