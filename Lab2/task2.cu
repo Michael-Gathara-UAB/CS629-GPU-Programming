@@ -7,6 +7,8 @@ Author: Michael Gathara (mikegtr at uab dot edu)*/
 #include "cuda_runtime.h"
 #include "device_launch_parameters.h"
 
+#define MAX_BLOCK_SIZE 32
+
 __global__ 
 void matrixMultGPUKernel(float *a, float *b, float *c, int m, int k, int n, int blockSize) {
     int tx = threadIdx.x;
@@ -16,8 +18,8 @@ void matrixMultGPUKernel(float *a, float *b, float *c, int m, int k, int n, int 
     int col = blockIdx.x * blockSize + tx;
     float sum = 0.0f;
     
-    __shared__ float a_shared[blockSize][blockSize];
-    __shared__ float b_shared[blockSize][blockSize];
+    __shared__ float a_shared[MAX_BLOCK_SIZE][MAX_BLOCK_SIZE];
+    __shared__ float b_shared[MAX_BLOCK_SIZE][MAX_BLOCK_SIZE];
 
     for (int t = 0; t < (k - 1) / blockSize + 1; ++t) {
         if (row < m && t * blockSize + tx < k) {
