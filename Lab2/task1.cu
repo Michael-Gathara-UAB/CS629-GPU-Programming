@@ -8,6 +8,7 @@ Author: Michael Gathara (mikegtr at uab dot edu)*/
 #include "device_launch_parameters.h"
 
 #define BLOCK_SIZE 16  
+void random_matrix(int *arr, int n);
 
 __global__ void matrixMultGPUKernel(float *a, float *b, float *c, int m, int k, int n) {
     int row = blockIdx.y * blockDim.y + threadIdx.y;
@@ -33,9 +34,9 @@ void matrixMultCPU(float *a, float *b, float *c, int m, int k, int n) {
     }
 }
 
-void random_matrix(int *arr, int n) {
+void random_matrix(float *arr, int n) {
     for (unsigned int i = 0; i < n * n; i++) {
-        arr[i] = rand() % 10001 / 10000.0;
+        arr[i] = static_cast<float>(rand()) / RAND_MAX;
     }
 }
 
@@ -53,8 +54,8 @@ int validate(float *c_gpu, float *c_cpu, int m, int n) {
 }
 
 int main() {
-    constexpr lim = 10;
-    constexpr m = lim, k = lim, n = lim; 
+    int lim = 32;
+    unsigned int m = lim, k = lim, n = lim; 
     size_t a_size = m * k * sizeof(float);
     size_t b_size = k * n * sizeof(float);
     size_t c_size = m * n * sizeof(float);
@@ -65,8 +66,8 @@ int main() {
     c_gpu = (float*)malloc(c_size);
     c_cpu = (float*)malloc(c_size);
 
-    randomMatrix(a, m, k);
-    randomMatrix(b, k, n);
+    random_matrix(a, m);
+    random_matrix(b, k);
 
     float *d_a, *d_b, *d_c;
     cudaMalloc(&d_a, a_size);
@@ -96,9 +97,10 @@ int main() {
     matrixMultCPU(a, b, c_cpu, m, k, n);
 
     int errors = validate(c_gpu, c_cpu, m, n);
+		printf("There were %d errors", errors);
 
-    float gflops = (m * k * n * 2.0f) / (milliseconds / 1000.0f) / 1e9;
-    printf("GFLOPS: %f\n", gflops);
+    float gflops = (m * k * n * 2) / 1e9  / (milliseconds / 1000);
+    printf("\nGFLOPS: %f\n", gflops);
 
     free(a); free(b); free(c_gpu); free(c_cpu);
     cudaFree(d_a); cudaFree(d_b); cudaFree(d_c);
