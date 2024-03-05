@@ -122,10 +122,10 @@ int main() {
         cudaEventElapsedTime(&milliseconds, start, stop);
 
         cudaMemcpy(c_gpu, d_c, c_size, cudaMemcpyDeviceToHost);
-        //matrixMultCPU(a, b, c_cpu, m, k, n);
+        matrixMultCPU(a, b, c_cpu, m, k, n);
 
-        //int errors = validate(c_gpu, c_cpu, m, n);
-        //printf("Block size %dx%d, Errors: %d\n", blockSize, blockSize, errors);
+        int errors = validate(c_gpu, c_cpu, m, n);
+        printf("Block size %dx%d, Errors: %d\n", blockSize, blockSize, errors);
 
         float gflops = (m * k * n * 2.0) / 1e9 / (milliseconds / 1000);
         printf("Block size %dx%d, GFLOPS: %f\n", blockSize, blockSize, gflops);
