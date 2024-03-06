@@ -208,22 +208,22 @@ void maximumMark_SM(student_records *h_records, student_records *h_records_resul
 	cudaEventRecord(start, 0);
 	
 	//Task 3.4) Call the shared memory reduction kernel
-	int threadsPerBlock = 256; 
-	int blocksPerGrid = (NUM_RECORDS + threadsPerBlock - 1) / threadsPerBlock;
+    int threadsPerBlock = 256; 
+    int blocksPerGrid = (NUM_RECORDS + threadsPerBlock - 1) / threadsPerBlock;
 
-	maximumMark_SM_kernel<<<blocksPerGrid, threadsPerBlock, threadsPerBlock * sizeof(student_record)>>>(d_records, d_reduced_records);
+    maximumMark_SM_kernel<<<blocksPerGrid, threadsPerBlock, threadsPerBlock * sizeof(student_record)>>>(d_records, d_reduced_records);
 
-	//Task 3.5) Copy the final block values back to CPU
-	cudaMemcpy(h_records_result, d_reduced_records, blocksPerGrid * sizeof(student_record), cudaMemcpyDeviceToHost);
+    //Task 3.5) Copy the final block values back to CPU
+    cudaMemcpy(h_records_result->assignment_marks, d_reduced_records, blocksPerGrid * sizeof(student_record), cudaMemcpyDeviceToHost);
 
-	//Task 3.6) Reduce the block level results on CPU
-	for (i = 0; i < blocksPerGrid; i++) {
-		if (h_records_result[i].assignment_mark > max_mark) {
-			max_mark = h_records_result[i].assignment_mark;
-			max_mark_student_id = h_records_result[i].student_id;
-		}
-	}
-
+    //Task 3.6) Reduce the block level results on CPU
+    for (i = 0; i < blocksPerGrid; i++) {
+        if (h_records_result->assignment_marks[i] > max_mark) {
+            max_mark = h_records_result->assignment_marks[i];
+            max_mark_student_id = h_records_result->student_ids[i];
+        }
+    }
+	
 	cudaEventRecord(stop, 0);
 	cudaEventSynchronize(stop);
 	cudaEventElapsedTime(&time, start, stop);
