@@ -53,6 +53,24 @@ __global__ void maximumMark_recursive_kernel(student_records *d_records, student
 
 	//Task 2.2) Compare two values and write the result to d_reduced_records
 
+    __shared__ student_record shared_records[THREADS_PER_BLOCK];
+
+    if (idx < NUM_RECORDS) {
+        shared_records[threadIdx.x].student_id = d_records->student_ids[idx];
+        shared_records[threadIdx.x].assignment_mark = d_records->assignment_marks[idx];
+    }
+    __syncthreads();
+
+    for (int stride = blockDim.x / 2; stride > 0; stride /= 2) {
+        if (threadIdx.x < stride) {
+            if (shared_records[threadIdx.x].assignment_mark < shared_records[threadIdx.x + stride].assignment_mark) {
+                shared_records[threadIdx.x].assignment_mark = shared_records[threadIdx.x + stride].assignment_mark;
+                shared_records[threadIdx.x].student_id = shared_records[threadIdx.x + stride].student_id;
+            }
+        }
+        __syncthreads();
+    }
+
 }
 
 //Task 3) Using block level reduction

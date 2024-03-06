@@ -1,3 +1,4 @@
 *.out
 notepad.cu
 token
+*_nogit.*

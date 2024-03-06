@@ -171,15 +171,15 @@ __global__ void maximumMark_recursive_kernel(student_records *d_records, student
     __syncthreads();
 
     // Task 2.2) Compare two values and write the result to d_reduced_records
-    for (int s = blockDim.x / 2; s > 0; s >>= 1) {
-        if (tid < s && (i + s) < num_records) {
-            if (sdata[tid + s].assignment_mark > sdata[tid].assignment_mark) {
-                sdata[tid].assignment_mark = sdata[tid + s].assignment_mark;
-                sdata[tid].student_id = sdata[tid + s].student_id;
-            }
-        }
-        __syncthreads();
-    }
+    // for (int s = blockDim.x / 2; s > 0; s >>= 1) {
+    //     if (tid < s && (i + s) < num_records) {
+    //         if (sdata[tid + s].assignment_mark > sdata[tid].assignment_mark) {
+    //             sdata[tid].assignment_mark = sdata[tid + s].assignment_mark;
+    //             sdata[tid].student_id = sdata[tid + s].student_id;
+    //         }
+    //     }
+    //     __syncthreads();
+    // }
 
     // Write the result for this block to d_reduced_records
     if (tid == 0) {
