@@ -22,18 +22,7 @@ typedef struct student_records student_records;
 
 __device__ volatile float d_max_mark = 0;
 __device__ volatile int d_max_mark_student_id = 0;
-__device__ inline float atomicCASFloat(float* address, float compare, float val) {
-    int* address_as_i = (int*)address;
-    int old = __float_as_int(compare);
-    int assumed;
 
-    do {
-        assumed = old;
-        old = atomicCAS(address_as_i, assumed, __float_as_int(val));
-    } while (assumed != old);
-
-    return __int_as_float(old);
-}
 
 // Naive atomic implementation
 __global__ void maximumMark_atomic_kernel(student_records *d_records) {
@@ -41,23 +30,25 @@ __global__ void maximumMark_atomic_kernel(student_records *d_records) {
     if (idx < NUM_RECORDS) { // Ensure we do not go out of bounds
         float mark = d_records->assignment_marks[idx];
         int id = d_records->student_ids[idx];
+        bool need_lock = true;
 
-        // While not succeeded
-        while(true) {
-            float old_max_mark = atomicExch((float*)&d_max_mark, d_max_mark);
-            if(mark > old_max_mark) {
-                // Try updating
-                if(atomicCAS((int*)&d_max_mark, __float_as_int(old_max_mark), __float_as_int(mark)) == __float_as_int(old_max_mark)) {
-										d_max_mark_student_id = id;
-                    break;
+        // Try to acquire lock to update global maximum
+        while (need_lock) {
+            if (atomicCAS(&lock, 0, 1) == 0) {
+                // Lock acquired, now update the global maximum
+                if (mark > d_max_mark) {
+                    d_max_mark = mark;
+                    d_max_mark_student_id = id;
                 }
-            } else {
-                // No need to update, just break
-                break;
+                // Release lock
+                atomicExch(&lock, 0);
+                need_lock = false; // exit the while loop
             }
+            // Implicit else: wait and try to acquire the lock again
         }
     }
 }
+
 
 
 // https://stackoverflow.com/questions/17399119/how-do-i-use-atomicmax-on-floating-point-values-in-cuda
