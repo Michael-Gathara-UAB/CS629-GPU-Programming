@@ -4,20 +4,39 @@
 #include "cuda_runtime.h"
 #include "device_launch_parameters.h"
 
-#define N 2048
+#define N 2050
 #define THREADS_PER_BLOCK 128
 
 void checkCUDAError(const char*);
 void random_ints(int *a);
+void vectorAddCPU(int *a, int *b, int *c);
+int validate(int *c, int *c_ref);
 
 
-
-__global__ void vectorAdd(int *a, int *b, int *c, int max) {
+__global__ 
+void vectorAdd(int *a, int *b, int *c, int max) {
 	int i = blockIdx.x * blockDim.x + threadIdx.x;
-	c[i] = a[i] - b[i];
+	if (i < max) {	
+		c[i] = a[i] + b[i];
+	}
 }
 
+void vectorAddCPU(int *a, int *b, int *c_ref) {
+	for (int i = 0; i < N; i++) {
+		c_ref[i] = a[i] + b[i];
+	}
+}
 
+int validate(int *c, int *c_ref) {
+	int e = 0;
+	for (int i = 0; i < N; i++) {
+		if (c[i] != c_ref[i]) {
+			printf("Error at %d: GOT {%d} in GPU and GOT {%d} in CPU", i, c[i], c_ref[i]);
+			e++;
+		}
+	}
+	return e;
+}
 
 int main(void) {
 	int *a, *b, *c, *c_ref;			// host copies of a, b, c
@@ -43,7 +62,7 @@ int main(void) {
 	checkCUDAError("CUDA memcpy");
 
 	// Launch add() kernel on GPU
-	vectorAdd << <N / THREADS_PER_BLOCK, THREADS_PER_BLOCK >> >(d_a, d_b, d_c, N);
+	vectorAdd <<<(N + THREADS_PER_BLOCK - 1) / THREADS_PER_BLOCK, THREADS_PER_BLOCK >>>(d_a, d_b, d_c, N);
 	
 	/* wait for all threads to complete */
 	cudaDeviceSynchronize();
@@ -53,9 +72,13 @@ int main(void) {
 	// Copy result back to host
 	cudaMemcpy(c, d_c, size, cudaMemcpyDeviceToHost);
 	checkCUDAError("CUDA memcpy");
+	
+	vectorAddCPU(a, b, c_ref);
+	errors = validate(c, c_ref);
+	printf("Errors: %d\n", errors);	
 
 	// Cleanup
-	free(a); free(b); free(c);
+	free(a); free(b); free(c); free(c_ref);
 	cudaFree(d_a); cudaFree(d_b); cudaFree(d_c);
 	checkCUDAError("CUDA cleanup");
 

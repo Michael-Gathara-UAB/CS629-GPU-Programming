@@ -41,9 +41,9 @@ int main(void) {
 
 	//apply each approach in turn 
 	maximumMark_atomic(h_records, h_records_result, d_records, d_records_result);
-	maximumMark_recursive(h_records, h_records_result, d_records, d_records_result);
-	maximumMark_SM(h_records, h_records_result, d_records, d_records_result);
-	maximumMark_shuffle(h_records, h_records_result, d_records, d_records_result);
+	// maximumMark_recursive(h_records, h_records_result, d_records, d_records_result);
+	// maximumMark_SM(h_records, h_records_result, d_records, d_records_result);
+	// maximumMark_shuffle(h_records, h_records_result, d_records, d_records_result);
 
 
 	// Cleanup
@@ -83,9 +83,11 @@ void readRecords(student_record *records){
 }
 
 void studentRecordAOS2SOA(student_record *aos, student_records *soa){
-	// Task 0.1 Convert student_record to student_records
+	for (int i = 0; i < NUM_RECORDS; i++) {
+		soa->student_ids[i] = aos[i].student_id;
+		soa->assignment_marks[i] = aos[i].assignment_mark;
+	}
 }
-
 
 void maximumMark_atomic(student_records *h_records, student_records *h_records_result, student_records *d_records, student_records *d_records_result){
 	float max_mark;
@@ -106,10 +108,18 @@ void maximumMark_atomic(student_records *h_records, student_records *h_records_r
 	cudaEventRecord(start, 0);
 
 	// Task 1.2 Confgure the kernel
+	int threadsPerBlock = 256;
+	int blocksPerGrid = (NUM_RECORDS + threadsPerBlock - 1) / threadsPerBlock;
 
 	// Task 1.3) Launch and synchronize the kernel
+	cudaDeviceSynchronize();
+	maximumMark_atomic_kernel<<<blocksPerGrid, threadsPerBlock>>>(d_records);
+	cudaDeviceSynchronize();
 	
 	// Task 1.4)  Copy result back to host
+	cudaMemcpyFromSymbol(&max_mark, d_max_mark, sizeof(float), 0, cudaMemcpyDeviceToHost);
+	cudaMemcpyFromSymbol(&max_mark_student_id, d_max_mark_student_id, sizeof(int), 0, cudaMemcpyDeviceToHost);
+
 	
 	cudaEventRecord(stop, 0);
 	cudaEventSynchronize(stop);
@@ -117,9 +127,21 @@ void maximumMark_atomic(student_records *h_records, student_records *h_records_r
 
 	// Task 1.5) Use CPU to validate results
 
-	//output result
-	printf("Atomics: Highest mark recorded %f was by student %d\n", max_mark, max_mark_student_id);
-	printf("\tExecution time was %f ms\n", time);
+	float cpuMaxMark = 0.0f;
+	int cpuMaxMarkStudentId = -1;
+	for (int i = 0; i < NUM_RECORDS; i++) {
+		if (h_records->assignment_marks[i] > cpuMaxMark) {
+			cpuMaxMark = h_records->assignment_marks[i];
+			cpuMaxMarkStudentId = h_records->student_ids[i];
+		}
+	}
+
+	// printf("CPU: Highest mark recorded %f was by student %d\n", cpuMaxMark, cpuMaxMarkStudentId);
+
+	// //output result
+	// printf("Atomics: Highest mark recorded %f was by student %d\n", max_mark, max_mark_student_id);
+	// printf("\tExecution time was %f ms\n", time);
+	printf("%d", max_mark_student_id);
 
 	cudaEventDestroy(start);
 	cudaEventDestroy(stop);
