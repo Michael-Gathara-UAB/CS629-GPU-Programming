@@ -22,48 +22,33 @@ typedef struct student_records student_records;
 
 __device__ volatile float d_max_mark = 0;
 __device__ volatile int d_max_mark_student_id = 0;
-
+__device__ int lock = 0;
 
 // Naive atomic implementation
 __global__ void maximumMark_atomic_kernel(student_records *d_records) {
     int idx = blockIdx.x * blockDim.x + threadIdx.x;
-    if (idx < NUM_RECORDS) { // Ensure we do not go out of bounds
+    if (idx < NUM_RECORDS) {
         float mark = d_records->assignment_marks[idx];
         int id = d_records->student_ids[idx];
         bool need_lock = true;
 
-        // Try to acquire lock to update global maximum
         while (need_lock) {
             if (atomicCAS(&lock, 0, 1) == 0) {
-                // Lock acquired, now update the global maximum
                 if (mark > d_max_mark) {
                     d_max_mark = mark;
                     d_max_mark_student_id = id;
                 }
-                // Release lock
                 atomicExch(&lock, 0);
-                need_lock = false; // exit the while loop
+                need_lock = false;
             }
-            // Implicit else: wait and try to acquire the lock again
         }
     }
-}
-
-
-
-// https://stackoverflow.com/questions/17399119/how-do-i-use-atomicmax-on-floating-point-values-in-cuda
-__device__ __forceinline__ float atomicMaxFloat (float * addr, float value) {
-    float old;
-    old = (value >= 0) ? __int_as_float(atomicMax((int *)addr, __float_as_int(value))) :
-         __uint_as_float(atomicMin((unsigned int *)addr, __float_as_uint(value)));
-
-    return old;
 }
 
 //Task 2) Recursive Reduction
 __global__ void maximumMark_recursive_kernel(student_records *d_records, student_records *d_reduced_records) {
 	int idx = blockIdx.x * blockDim.x + threadIdx.x;
-
+    
 	//Task 2.1) Load a single student record into shared memory
 
 	//Task 2.2) Compare two values and write the result to d_reduced_records
@@ -76,11 +61,30 @@ __global__ void maximumMark_SM_kernel(student_records *d_records, student_record
 	int idx = blockIdx.x * blockDim.x + threadIdx.x;
 
 	//Task 3.1) Load a single student record into shared memory
+    extern __shared__ student_record s_records[];
+	int idx = blockIdx.x * blockDim.x + threadIdx.x;
+
+	if (idx < NUM_RECORDS) {
+		// Each thread loads one student record into shared memory
+		s_records[threadIdx.x].student_id = d_records->student_ids[idx];
+		s_records[threadIdx.x].assignment_mark = d_records->assignment_marks[idx];
+	}
+	__syncthreads();
 
 	//Task 3.2) Reduce in shared memory in parallel
+    for (int stride = 1; stride < blockDim.x; stride *= 2) {
+		int index = 2 * stride * threadIdx.x;
+		if (index < blockDim.x) {
+			if (s_records[index].assignment_mark < s_records[index + stride].assignment_mark) {
+				s_records[index] = s_records[index + stride];
+			}
+		}
+		__syncthreads(); 
+	}
 
-	//Task 3.3) Write the result
-
+    if (threadIdx.x == 0) {
+		d_reduced_records[blockIdx.x] = s_records[0];
+	}
 }
 
 //Task 4) Using warp level reduction
