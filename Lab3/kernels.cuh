@@ -62,7 +62,6 @@ __global__ void maximumMark_SM_kernel(student_records *d_records, student_record
 
 	//Task 3.1) Load a single student record into shared memory
     extern __shared__ student_record s_records[];
-	int idx = blockIdx.x * blockDim.x + threadIdx.x;
 
 	if (idx < NUM_RECORDS) {
 		// Each thread loads one student record into shared memory

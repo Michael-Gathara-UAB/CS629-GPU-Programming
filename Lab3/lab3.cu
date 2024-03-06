@@ -210,7 +210,7 @@ void maximumMark_SM(student_records *h_records, student_records *h_records_resul
 	//Task 3.4) Call the shared memory reduction kernel
     int threadsPerBlock = 256; 
     int blocksPerGrid = (NUM_RECORDS + threadsPerBlock - 1) / threadsPerBlock;
-	student_record *d_reduced_records;
+	student_records *d_reduced_records;
 	cudaMalloc((void**)&d_reduced_records, blocksPerGrid * sizeof(student_record));
 	checkCUDAError("CUDA malloc for reduced records");
 
