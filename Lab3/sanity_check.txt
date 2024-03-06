@@ -1,0 +1,2012 @@
+NOT EQ: Thread 768: 27577 -> 0
+NOT EQ: Thread 1408: 1259 -> 0
+NOT EQ: Thread 744: 15370 -> 0
+NOT EQ: Thread 712: 19812 -> 0
+NOT EQ: Thread 26: 32662 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32662
+	Execution time was 0.848736 ms
+NOT EQ: Thread 1123: 9462 -> 0
+NOT EQ: Thread 1920: 18709 -> 0
+NOT EQ: Thread 26: 32662 -> 0
+Thread 1183: 32651 -> 0
+NOT EQ: Thread 1160: 2003 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32651
+	Execution time was 1.042784 ms
+NOT EQ: Thread 544: 7278 -> 0
+NOT EQ: Thread 512: 17124 -> 0
+NOT EQ: Thread 1920: 18709 -> 0
+NOT EQ: Thread 1921: 28642 -> 0
+NOT EQ: Thread 200: 17773 -> 0
+NOT EQ: Thread 1832: 6504 -> 0
+NOT EQ: Thread 393: 608 -> 0
+NOT EQ: Thread 1001: 3822 -> 0
+NOT EQ: Thread 1116: 4042 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 4042
+	Execution time was 0.737024 ms
+NOT EQ: Thread 1249: 28641 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 1001: 3822 -> 0
+NOT EQ: Thread 457: 23971 -> 0
+NOT EQ: Thread 26: 32662 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32662
+	Execution time was 0.928544 ms
+NOT EQ: Thread 1922: 6336 -> 0
+NOT EQ: Thread 1408: 1259 -> 0
+NOT EQ: Thread 690: 26063 -> 0
+NOT EQ: Thread 408: 23318 -> 0
+NOT EQ: Thread 318: 20424 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 20424
+	Execution time was 0.908608 ms
+NOT EQ: Thread 1922: 6336 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 408: 23318 -> 0
+NOT EQ: Thread 26: 32662 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32662
+	Execution time was 1.207584 ms
+NOT EQ: Thread 1472: 27311 -> 0
+NOT EQ: Thread 1001: 3822 -> 0
+NOT EQ: Thread 318: 20424 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 20424
+	Execution time was 0.673568 ms
+NOT EQ: Thread 1001: 3822 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 1449: 3832 -> 0
+NOT EQ: Thread 1770: 1511 -> 0
+NOT EQ: Thread 1645: 21086 -> 0
+NOT EQ: Thread 559: 22361 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 22361
+	Execution time was 0.674144 ms
+NOT EQ: Thread 1001: 3822 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 1449: 3832 -> 0
+NOT EQ: Thread 106: 5844 -> 0
+NOT EQ: Thread 1770: 1511 -> 0
+NOT EQ: Thread 1645: 21086 -> 0
+NOT EQ: Thread 559: 22361 -> 0
+NOT EQ: Thread 592: 943 -> 0
+NOT EQ: Thread 2036: 32715 -> 0
+NOT EQ: Thread 26: 32662 -> 0
+NOT EQ: Thread 1566: 24464 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 24464
+	Execution time was 0.800192 ms
+NOT EQ: Thread 1248: 14676 -> 0
+NOT EQ: Thread 1028: 20667 -> 0
+NOT EQ: Thread 898: 13525 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 1472: 27311 -> 0
+NOT EQ: Thread 166: 12455 -> 0
+NOT EQ: Thread 1001: 3822 -> 0
+NOT EQ: Thread 1066: 22816 -> 0
+NOT EQ: Thread 1770: 1511 -> 0
+NOT EQ: Thread 106: 5844 -> 0
+NOT EQ: Thread 107: 14989 -> 0
+NOT EQ: Thread 1632: 9578 -> 0
+NOT EQ: Thread 1645: 21086 -> 0
+NOT EQ: Thread 325: 28112 -> 0
+NOT EQ: Thread 341: 25561 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 21086
+	Execution time was 0.761696 ms
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 1001: 3822 -> 0
+NOT EQ: Thread 1249: 28641 -> 0
+NOT EQ: Thread 1256: 24277 -> 0
+NOT EQ: Thread 304: 1626 -> 0
+NOT EQ: Thread 1307: 2944 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 2944
+	Execution time was 0.941024 ms
+NOT EQ: Thread 1122: 20073 -> 0
+NOT EQ: Thread 1123: 9462 -> 0
+NOT EQ: Thread 1632: 9578 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 1449: 3832 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32651
+	Execution time was 1.126400 ms
+NOT EQ: Thread 1123: 9462 -> 0
+NOT EQ: Thread 1248: 14676 -> 0
+NOT EQ: Thread 1729: 6231 -> 0
+NOT EQ: Thread 1764: 9085 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 690: 26063 -> 0
+NOT EQ: Thread 2036: 32715 -> 0
+NOT EQ: Thread 408: 23318 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 23318
+	Execution time was 0.942688 ms
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 1186: 27283 -> 0
+NOT EQ: Thread 1123: 9462 -> 0
+NOT EQ: Thread 325: 28112 -> 0
+NOT EQ: Thread 426: 23936 -> 0
+NOT EQ: Thread 26: 32662 -> 0
+Thread 1183: 32651 -> 0
+NOT EQ: Thread 1152: 19022 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32651
+	Execution time was 0.690432 ms
+NOT EQ: Thread 1729: 6231 -> 0
+NOT EQ: Thread 1001: 3822 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 1449: 3832 -> 0
+NOT EQ: Thread 26: 32662 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32662
+	Execution time was 1.027264 ms
+NOT EQ: Thread 1122: 20073 -> 0
+NOT EQ: Thread 1123: 9462 -> 0
+NOT EQ: Thread 1344: 12493 -> 0
+NOT EQ: Thread 457: 23971 -> 0
+NOT EQ: Thread 690: 26063 -> 0
+NOT EQ: Thread 26: 32662 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32662
+	Execution time was 0.709120 ms
+NOT EQ: Thread 1729: 6231 -> 0
+NOT EQ: Thread 1123: 9462 -> 0
+NOT EQ: Thread 1249: 28641 -> 0
+NOT EQ: Thread 1922: 6336 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 106: 5844 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32651
+	Execution time was 0.756416 ms
+NOT EQ: Thread 1600: 29478 -> 0
+NOT EQ: Thread 1249: 28641 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 1001: 3822 -> 0
+NOT EQ: Thread 1770: 1511 -> 0
+NOT EQ: Thread 304: 1626 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 1511
+	Execution time was 0.638432 ms
+NOT EQ: Thread 1123: 9462 -> 0
+NOT EQ: Thread 1472: 27311 -> 0
+NOT EQ: Thread 690: 26063 -> 0
+NOT EQ: Thread 26: 32662 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32662
+	Execution time was 0.867744 ms
+NOT EQ: Thread 1600: 29478 -> 0
+NOT EQ: Thread 1248: 14676 -> 0
+NOT EQ: Thread 1249: 28641 -> 0
+NOT EQ: Thread 104: 22798 -> 0
+NOT EQ: Thread 1001: 3822 -> 0
+NOT EQ: Thread 852: 32372 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32372
+	Execution time was 0.640192 ms
+NOT EQ: Thread 32: 288 -> 0
+NOT EQ: Thread 768: 27577 -> 0
+NOT EQ: Thread 200: 17773 -> 0
+NOT EQ: Thread 393: 608 -> 0
+NOT EQ: Thread 408: 23318 -> 0
+NOT EQ: Thread 26: 32662 -> 0
+Thread 1183: 32651 -> 0
+NOT EQ: Thread 1160: 2003 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32651
+	Execution time was 0.633376 ms
+NOT EQ: Thread 1665: 32621 -> 0
+NOT EQ: Thread 1472: 27311 -> 0
+NOT EQ: Thread 768: 27577 -> 0
+NOT EQ: Thread 712: 19812 -> 0
+NOT EQ: Thread 674: 12042 -> 0
+NOT EQ: Thread 690: 26063 -> 0
+NOT EQ: Thread 1458: 7028 -> 0
+NOT EQ: Thread 341: 25561 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 26063
+	Execution time was 0.818304 ms
+NOT EQ: Thread 1729: 6231 -> 0
+NOT EQ: Thread 1123: 9462 -> 0
+NOT EQ: Thread 768: 27577 -> 0
+NOT EQ: Thread 1922: 6336 -> 0
+NOT EQ: Thread 1639: 28368 -> 0
+NOT EQ: Thread 1675: 12036 -> 0
+NOT EQ: Thread 274: 12835 -> 0
+NOT EQ: Thread 1588: 29448 -> 0
+NOT EQ: Thread 26: 32662 -> 0
+Thread 1183: 32651 -> 0
+NOT EQ: Thread 1160: 2003 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32651
+	Execution time was 0.832896 ms
+NOT EQ: Thread 1123: 9462 -> 0
+NOT EQ: Thread 1505: 14469 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 1472: 27311 -> 0
+NOT EQ: Thread 1249: 28641 -> 0
+NOT EQ: Thread 1256: 24277 -> 0
+NOT EQ: Thread 1382: 25402 -> 0
+NOT EQ: Thread 1387: 5469 -> 0
+NOT EQ: Thread 1365: 22161 -> 0
+NOT EQ: Thread 26: 32662 -> 0
+Thread 1183: 32651 -> 0
+NOT EQ: Thread 318: 20424 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 20424
+	Execution time was 0.855200 ms
+NOT EQ: Thread 640: 9220 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 1382: 25402 -> 0
+NOT EQ: Thread 1807: 29613 -> 0
+NOT EQ: Thread 690: 26063 -> 0
+NOT EQ: Thread 952: 24033 -> 0
+NOT EQ: Thread 26: 32662 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 26063
+	Execution time was 0.737184 ms
+NOT EQ: Thread 1249: 28641 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 1001: 3822 -> 0
+NOT EQ: Thread 1870: 1949 -> 0
+NOT EQ: Thread 690: 26063 -> 0
+NOT EQ: Thread 408: 23318 -> 0
+NOT EQ: Thread 26: 32662 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32662
+	Execution time was 0.937888 ms
+NOT EQ: Thread 1665: 32621 -> 0
+NOT EQ: Thread 1922: 6336 -> 0
+NOT EQ: Thread 1280: 19539 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 107: 14989 -> 0
+NOT EQ: Thread 231: 1018 -> 0
+NOT EQ: Thread 237: 9576 -> 0
+NOT EQ: Thread 1550: 28029 -> 0
+NOT EQ: Thread 1817: 32499 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 9576
+	Execution time was 0.743968 ms
+NOT EQ: Thread 1764: 9085 -> 0
+NOT EQ: Thread 640: 9220 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 106: 5844 -> 0
+NOT EQ: Thread 952: 24033 -> 0
+NOT EQ: Thread 408: 23318 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 23318
+	Execution time was 0.783104 ms
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 1249: 28641 -> 0
+NOT EQ: Thread 1256: 24277 -> 0
+NOT EQ: Thread 1770: 1511 -> 0
+NOT EQ: Thread 107: 14989 -> 0
+NOT EQ: Thread 1588: 29448 -> 0
+Thread 1183: 32651 -> 0
+NOT EQ: Thread 304: 1626 -> 0
+NOT EQ: Thread 318: 20424 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 20424
+	Execution time was 0.619552 ms
+NOT EQ: Thread 1505: 14469 -> 0
+NOT EQ: Thread 1122: 20073 -> 0
+NOT EQ: Thread 107: 14989 -> 0
+NOT EQ: Thread 1964: 8144 -> 0
+NOT EQ: Thread 1807: 29613 -> 0
+NOT EQ: Thread 1344: 12493 -> 0
+NOT EQ: Thread 1365: 22161 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 22161
+	Execution time was 0.604000 ms
+NOT EQ: Thread 1472: 27311 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32651
+	Execution time was 0.691168 ms
+NOT EQ: Thread 1600: 29478 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 107: 14989 -> 0
+NOT EQ: Thread 1964: 8144 -> 0
+NOT EQ: Thread 1807: 29613 -> 0
+NOT EQ: Thread 385: 11600 -> 0
+NOT EQ: Thread 401: 18035 -> 0
+NOT EQ: Thread 26: 32662 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32662
+	Execution time was 0.881728 ms
+NOT EQ: Thread 1729: 6231 -> 0
+NOT EQ: Thread 1249: 28641 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 106: 5844 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32651
+	Execution time was 0.762464 ms
+NOT EQ: Thread 1123: 9462 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 385: 11600 -> 0
+NOT EQ: Thread 712: 19812 -> 0
+NOT EQ: Thread 1001: 3822 -> 0
+NOT EQ: Thread 26: 32662 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32662
+	Execution time was 0.757952 ms
+NOT EQ: Thread 1382: 25402 -> 0
+NOT EQ: Thread 1807: 29613 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 1458: 7028 -> 0
+NOT EQ: Thread 690: 26063 -> 0
+NOT EQ: Thread 952: 24033 -> 0
+NOT EQ: Thread 1307: 2944 -> 0
+Thread 1183: 32651 -> 0
+NOT EQ: Thread 1160: 2003 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32651
+	Execution time was 0.812032 ms
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 1249: 28641 -> 0
+NOT EQ: Thread 1256: 24277 -> 0
+NOT EQ: Thread 106: 5844 -> 0
+NOT EQ: Thread 1588: 29448 -> 0
+NOT EQ: Thread 341: 25561 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 25561
+	Execution time was 0.903360 ms
+NOT EQ: Thread 1123: 9462 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 1001: 3822 -> 0
+NOT EQ: Thread 1307: 2944 -> 0
+Thread 1183: 32651 -> 0
+NOT EQ: Thread 1160: 2003 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32651
+	Execution time was 0.818656 ms
+NOT EQ: Thread 640: 9220 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 1382: 25402 -> 0
+NOT EQ: Thread 1964: 8144 -> 0
+NOT EQ: Thread 1807: 29613 -> 0
+NOT EQ: Thread 408: 23318 -> 0
+NOT EQ: Thread 26: 32662 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32662
+	Execution time was 0.629600 ms
+NOT EQ: Thread 1922: 6336 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 1472: 27311 -> 0
+NOT EQ: Thread 408: 23318 -> 0
+NOT EQ: Thread 26: 32662 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32662
+	Execution time was 0.763840 ms
+NOT EQ: Thread 1922: 6336 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 107: 14989 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 14989
+	Execution time was 0.649120 ms
+NOT EQ: Thread 1249: 28641 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 1472: 27311 -> 0
+NOT EQ: Thread 744: 15370 -> 0
+NOT EQ: Thread 408: 23318 -> 0
+NOT EQ: Thread 1307: 2944 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 2944
+	Execution time was 0.709760 ms
+NOT EQ: Thread 1123: 9462 -> 0
+NOT EQ: Thread 129: 18875 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 1807: 29613 -> 0
+NOT EQ: Thread 690: 26063 -> 0
+NOT EQ: Thread 952: 24033 -> 0
+NOT EQ: Thread 26: 32662 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32662
+	Execution time was 0.700544 ms
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 385: 11600 -> 0
+NOT EQ: Thread 393: 608 -> 0
+NOT EQ: Thread 1807: 29613 -> 0
+NOT EQ: Thread 249: 10195 -> 0
+NOT EQ: Thread 26: 32662 -> 0
+NOT EQ: Thread 1116: 4042 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32662
+	Execution time was 0.971840 ms
+NOT EQ: Thread 1665: 32621 -> 0
+NOT EQ: Thread 1280: 19539 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 1764: 9085 -> 0
+NOT EQ: Thread 1382: 25402 -> 0
+NOT EQ: Thread 744: 15370 -> 0
+NOT EQ: Thread 1001: 3822 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 9085
+	Execution time was 1.005696 ms
+NOT EQ: Thread 1123: 9462 -> 0
+NOT EQ: Thread 1600: 29478 -> 0
+NOT EQ: Thread 1249: 28641 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 78: 900 -> 0
+NOT EQ: Thread 408: 23318 -> 0
+NOT EQ: Thread 249: 10195 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 10195
+	Execution time was 0.992576 ms
+NOT EQ: Thread 1600: 29478 -> 0
+NOT EQ: Thread 1249: 28641 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 78: 900 -> 0
+NOT EQ: Thread 677: 1670 -> 0
+NOT EQ: Thread 690: 26063 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 1670
+	Execution time was 1.005248 ms
+NOT EQ: Thread 1249: 28641 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 712: 19812 -> 0
+NOT EQ: Thread 106: 5844 -> 0
+NOT EQ: Thread 107: 14989 -> 0
+NOT EQ: Thread 318: 20424 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 20424
+	Execution time was 0.844704 ms
+NOT EQ: Thread 640: 9220 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 1764: 9085 -> 0
+NOT EQ: Thread 1807: 29613 -> 0
+NOT EQ: Thread 952: 24033 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 24033
+	Execution time was 0.738624 ms
+NOT EQ: Thread 1123: 9462 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 1249: 28641 -> 0
+NOT EQ: Thread 1256: 24277 -> 0
+NOT EQ: Thread 712: 19812 -> 0
+NOT EQ: Thread 1901: 19095 -> 0
+NOT EQ: Thread 690: 26063 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 24277
+	Execution time was 0.638656 ms
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 1249: 28641 -> 0
+NOT EQ: Thread 1256: 24277 -> 0
+NOT EQ: Thread 200: 17773 -> 0
+NOT EQ: Thread 1764: 9085 -> 0
+NOT EQ: Thread 1770: 1511 -> 0
+NOT EQ: Thread 1588: 29448 -> 0
+NOT EQ: Thread 341: 25561 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 29448
+	Execution time was 0.686656 ms
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 1249: 28641 -> 0
+NOT EQ: Thread 1256: 24277 -> 0
+NOT EQ: Thread 712: 19812 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32651
+	Execution time was 0.687872 ms
+NOT EQ: Thread 1123: 9462 -> 0
+NOT EQ: Thread 1249: 28641 -> 0
+NOT EQ: Thread 132: 21881 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 690: 26063 -> 0
+NOT EQ: Thread 408: 23318 -> 0
+NOT EQ: Thread 249: 10195 -> 0
+NOT EQ: Thread 26: 32662 -> 0
+NOT EQ: Thread 318: 20424 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 20424
+	Execution time was 1.024288 ms
+NOT EQ: Thread 1600: 29478 -> 0
+NOT EQ: Thread 1249: 28641 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 677: 1670 -> 0
+NOT EQ: Thread 1770: 1511 -> 0
+NOT EQ: Thread 1870: 1949 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 1511
+	Execution time was 1.280160 ms
+NOT EQ: Thread 1922: 6336 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 1123: 9462 -> 0
+NOT EQ: Thread 1249: 28641 -> 0
+NOT EQ: Thread 1256: 24277 -> 0
+NOT EQ: Thread 1001: 3822 -> 0
+NOT EQ: Thread 1764: 9085 -> 0
+NOT EQ: Thread 1770: 1511 -> 0
+NOT EQ: Thread 1588: 29448 -> 0
+NOT EQ: Thread 341: 25561 -> 0
+NOT EQ: Thread 318: 20424 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 20424
+	Execution time was 0.982016 ms
+NOT EQ: Thread 1249: 28641 -> 0
+NOT EQ: Thread 1922: 6336 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 1413: 3154 -> 0
+NOT EQ: Thread 1001: 3822 -> 0
+NOT EQ: Thread 2026: 19522 -> 0
+NOT EQ: Thread 2036: 32715 -> 0
+NOT EQ: Thread 1365: 22161 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 22161
+	Execution time was 0.863552 ms
+NOT EQ: Thread 1729: 6231 -> 0
+NOT EQ: Thread 1665: 32621 -> 0
+NOT EQ: Thread 1632: 9578 -> 0
+NOT EQ: Thread 768: 27577 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 6231
+	Execution time was 0.843136 ms
+NOT EQ: Thread 1249: 28641 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 1001: 3822 -> 0
+NOT EQ: Thread 304: 1626 -> 0
+NOT EQ: Thread 408: 23318 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 23318
+	Execution time was 0.995360 ms
+NOT EQ: Thread 1600: 29478 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 712: 19812 -> 0
+NOT EQ: Thread 385: 11600 -> 0
+NOT EQ: Thread 393: 608 -> 0
+NOT EQ: Thread 1387: 5469 -> 0
+NOT EQ: Thread 26: 32662 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32662
+	Execution time was 0.975872 ms
+NOT EQ: Thread 1600: 29478 -> 0
+NOT EQ: Thread 1764: 9085 -> 0
+NOT EQ: Thread 1632: 9578 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 1472: 27311 -> 0
+NOT EQ: Thread 782: 31577 -> 0
+NOT EQ: Thread 690: 26063 -> 0
+NOT EQ: Thread 498: 4686 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 4686
+	Execution time was 0.923200 ms
+NOT EQ: Thread 1120: 14964 -> 0
+NOT EQ: Thread 1123: 9462 -> 0
+NOT EQ: Thread 1220: 11149 -> 0
+NOT EQ: Thread 1233: 10048 -> 0
+NOT EQ: Thread 690: 26063 -> 0
+NOT EQ: Thread 1344: 12493 -> 0
+NOT EQ: Thread 1365: 22161 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 11149
+	Execution time was 0.620416 ms
+NOT EQ: Thread 640: 9220 -> 0
+NOT EQ: Thread 1123: 9462 -> 0
+NOT EQ: Thread 1248: 14676 -> 0
+NOT EQ: Thread 1001: 3822 -> 0
+NOT EQ: Thread 341: 25561 -> 0
+NOT EQ: Thread 534: 17659 -> 0
+NOT EQ: Thread 26: 32662 -> 0
+NOT EQ: Thread 1339: 22086 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 17659
+	Execution time was 0.720896 ms
+NOT EQ: Thread 640: 9220 -> 0
+NOT EQ: Thread 1248: 14676 -> 0
+NOT EQ: Thread 1922: 6336 -> 0
+NOT EQ: Thread 1001: 3822 -> 0
+NOT EQ: Thread 1817: 32499 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32499
+	Execution time was 1.195328 ms
+NOT EQ: Thread 1123: 9462 -> 0
+NOT EQ: Thread 1248: 14676 -> 0
+NOT EQ: Thread 1249: 28641 -> 0
+NOT EQ: Thread 1001: 3822 -> 0
+NOT EQ: Thread 1964: 8144 -> 0
+NOT EQ: Thread 1901: 19095 -> 0
+NOT EQ: Thread 1639: 28368 -> 0
+NOT EQ: Thread 1645: 21086 -> 0
+NOT EQ: Thread 1458: 7028 -> 0
+NOT EQ: Thread 2036: 32715 -> 0
+NOT EQ: Thread 1339: 22086 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 22086
+	Execution time was 1.531456 ms
+NOT EQ: Thread 1922: 6336 -> 0
+NOT EQ: Thread 1344: 12493 -> 0
+NOT EQ: Thread 1120: 14964 -> 0
+NOT EQ: Thread 1122: 20073 -> 0
+NOT EQ: Thread 1123: 9462 -> 0
+NOT EQ: Thread 942: 26018 -> 0
+NOT EQ: Thread 408: 23318 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 9462
+	Execution time was 0.706272 ms
+NOT EQ: Thread 1123: 9462 -> 0
+NOT EQ: Thread 1248: 14676 -> 0
+NOT EQ: Thread 1472: 27311 -> 0
+NOT EQ: Thread 1280: 19539 -> 0
+NOT EQ: Thread 782: 31577 -> 0
+NOT EQ: Thread 783: 14629 -> 0
+NOT EQ: Thread 26: 32662 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32662
+	Execution time was 0.835424 ms
+NOT EQ: Thread 640: 9220 -> 0
+NOT EQ: Thread 1248: 14676 -> 0
+NOT EQ: Thread 1905: 6879 -> 0
+NOT EQ: Thread 408: 23318 -> 0
+NOT EQ: Thread 26: 32662 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32662
+	Execution time was 0.745856 ms
+NOT EQ: Thread 1123: 9462 -> 0
+NOT EQ: Thread 1248: 14676 -> 0
+NOT EQ: Thread 1249: 28641 -> 0
+NOT EQ: Thread 393: 608 -> 0
+NOT EQ: Thread 249: 10195 -> 0
+NOT EQ: Thread 26: 32662 -> 0
+NOT EQ: Thread 1307: 2944 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32662
+	Execution time was 0.828192 ms
+NOT EQ: Thread 1248: 14676 -> 0
+NOT EQ: Thread 1249: 28641 -> 0
+NOT EQ: Thread 1001: 3822 -> 0
+NOT EQ: Thread 408: 23318 -> 0
+NOT EQ: Thread 26: 32662 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32662
+	Execution time was 0.741696 ms
+NOT EQ: Thread 640: 9220 -> 0
+NOT EQ: Thread 1248: 14676 -> 0
+NOT EQ: Thread 1922: 6336 -> 0
+NOT EQ: Thread 2021: 29554 -> 0
+NOT EQ: Thread 1801: 12008 -> 0
+NOT EQ: Thread 719: 12931 -> 0
+NOT EQ: Thread 408: 23318 -> 0
+NOT EQ: Thread 26: 32662 -> 0
+NOT EQ: Thread 318: 20424 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 20424
+	Execution time was 0.927872 ms
+NOT EQ: Thread 1600: 29478 -> 0
+NOT EQ: Thread 1248: 14676 -> 0
+NOT EQ: Thread 1249: 28641 -> 0
+NOT EQ: Thread 1091: 30591 -> 0
+NOT EQ: Thread 513: 32745 -> 0
+NOT EQ: Thread 1922: 6336 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 274: 12835 -> 0
+NOT EQ: Thread 26: 32662 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32662
+	Execution time was 0.788928 ms
+NOT EQ: Thread 1248: 14676 -> 0
+NOT EQ: Thread 1249: 28641 -> 0
+NOT EQ: Thread 1870: 1949 -> 0
+NOT EQ: Thread 1905: 6879 -> 0
+NOT EQ: Thread 408: 23318 -> 0
+NOT EQ: Thread 633: 30556 -> 0
+NOT EQ: Thread 26: 32662 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32662
+	Execution time was 0.747552 ms
+NOT EQ: Thread 513: 32745 -> 0
+NOT EQ: Thread 1248: 14676 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 1001: 3822 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32651
+	Execution time was 0.919040 ms
+NOT EQ: Thread 1123: 9462 -> 0
+NOT EQ: Thread 1248: 14676 -> 0
+NOT EQ: Thread 640: 9220 -> 0
+NOT EQ: Thread 1116: 4042 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 4042
+	Execution time was 0.720096 ms
+NOT EQ: Thread 1123: 9462 -> 0
+NOT EQ: Thread 1248: 14676 -> 0
+NOT EQ: Thread 1922: 6336 -> 0
+NOT EQ: Thread 1472: 27311 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32651
+	Execution time was 1.018048 ms
+NOT EQ: Thread 1123: 9462 -> 0
+NOT EQ: Thread 1248: 14676 -> 0
+NOT EQ: Thread 1249: 28641 -> 0
+NOT EQ: Thread 1256: 24277 -> 0
+NOT EQ: Thread 1964: 8144 -> 0
+NOT EQ: Thread 1901: 19095 -> 0
+NOT EQ: Thread 1458: 7028 -> 0
+NOT EQ: Thread 852: 32372 -> 0
+NOT EQ: Thread 26: 32662 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 24277
+	Execution time was 0.749920 ms
+NOT EQ: Thread 640: 9220 -> 0
+NOT EQ: Thread 1248: 14676 -> 0
+NOT EQ: Thread 1922: 6336 -> 0
+NOT EQ: Thread 1001: 3822 -> 0
+NOT EQ: Thread 107: 14989 -> 0
+NOT EQ: Thread 1817: 32499 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32499
+	Execution time was 0.649152 ms
+NOT EQ: Thread 1280: 19539 -> 0
+NOT EQ: Thread 1248: 14676 -> 0
+NOT EQ: Thread 1249: 28641 -> 0
+NOT EQ: Thread 1256: 24277 -> 0
+NOT EQ: Thread 200: 17773 -> 0
+NOT EQ: Thread 498: 4686 -> 0
+NOT EQ: Thread 385: 11600 -> 0
+NOT EQ: Thread 408: 23318 -> 0
+NOT EQ: Thread 26: 32662 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 23318
+	Execution time was 0.888448 ms
+NOT EQ: Thread 1248: 14676 -> 0
+NOT EQ: Thread 1249: 28641 -> 0
+NOT EQ: Thread 1256: 24277 -> 0
+NOT EQ: Thread 457: 23971 -> 0
+NOT EQ: Thread 274: 12835 -> 0
+NOT EQ: Thread 408: 23318 -> 0
+NOT EQ: Thread 26: 32662 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 23318
+	Execution time was 0.756800 ms
+NOT EQ: Thread 1248: 14676 -> 0
+NOT EQ: Thread 1249: 28641 -> 0
+NOT EQ: Thread 274: 12835 -> 0
+NOT EQ: Thread 408: 23318 -> 0
+NOT EQ: Thread 26: 32662 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 23318
+	Execution time was 0.657280 ms
+NOT EQ: Thread 1123: 9462 -> 0
+NOT EQ: Thread 1248: 14676 -> 0
+NOT EQ: Thread 1249: 28641 -> 0
+NOT EQ: Thread 325: 28112 -> 0
+NOT EQ: Thread 26: 32662 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32662
+	Execution time was 0.890848 ms
+NOT EQ: Thread 1249: 28641 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 1001: 3822 -> 0
+NOT EQ: Thread 1870: 1949 -> 0
+NOT EQ: Thread 408: 23318 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 23318
+	Execution time was 0.886112 ms
+NOT EQ: Thread 1249: 28641 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 1472: 27311 -> 0
+NOT EQ: Thread 1001: 3822 -> 0
+NOT EQ: Thread 690: 26063 -> 0
+NOT EQ: Thread 408: 23318 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 23318
+	Execution time was 1.548256 ms
+NOT EQ: Thread 1186: 27283 -> 0
+NOT EQ: Thread 1123: 9462 -> 0
+NOT EQ: Thread 1028: 20667 -> 0
+NOT EQ: Thread 1001: 3822 -> 0
+NOT EQ: Thread 1408: 1259 -> 0
+NOT EQ: Thread 1410: 42 -> 0
+NOT EQ: Thread 1413: 3154 -> 0
+NOT EQ: Thread 1423: 26260 -> 0
+NOT EQ: Thread 1233: 10048 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32651
+	Execution time was 0.974080 ms
+NOT EQ: Thread 1280: 19539 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 1458: 7028 -> 0
+NOT EQ: Thread 274: 12835 -> 0
+NOT EQ: Thread 385: 11600 -> 0
+NOT EQ: Thread 408: 23318 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 23318
+	Execution time was 1.378304 ms
+NOT EQ: Thread 1472: 27311 -> 0
+NOT EQ: Thread 107: 14989 -> 0
+NOT EQ: Thread 1817: 32499 -> 0
+NOT EQ: Thread 26: 32662 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32662
+	Execution time was 0.798752 ms
+NOT EQ: Thread 1280: 19539 -> 0
+NOT EQ: Thread 78: 900 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 1458: 7028 -> 0
+NOT EQ: Thread 385: 11600 -> 0
+NOT EQ: Thread 408: 23318 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 7028
+	Execution time was 0.999616 ms
+NOT EQ: Thread 1280: 19539 -> 0
+NOT EQ: Thread 1675: 12036 -> 0
+NOT EQ: Thread 1807: 29613 -> 0
+NOT EQ: Thread 26: 32662 -> 0
+NOT EQ: Thread 1339: 22086 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 22086
+	Execution time was 0.713952 ms
+NOT EQ: Thread 1472: 27311 -> 0
+NOT EQ: Thread 1001: 3822 -> 0
+NOT EQ: Thread 690: 26063 -> 0
+NOT EQ: Thread 408: 23318 -> 0
+NOT EQ: Thread 1817: 32499 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32499
+	Execution time was 0.711648 ms
+NOT EQ: Thread 1249: 28641 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 1001: 3822 -> 0
+NOT EQ: Thread 304: 1626 -> 0
+NOT EQ: Thread 690: 26063 -> 0
+NOT EQ: Thread 408: 23318 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 23318
+	Execution time was 0.685536 ms
+NOT EQ: Thread 1472: 27311 -> 0
+NOT EQ: Thread 690: 26063 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 26063
+	Execution time was 0.835424 ms
+NOT EQ: Thread 1248: 14676 -> 0
+NOT EQ: Thread 1249: 28641 -> 0
+NOT EQ: Thread 1472: 27311 -> 0
+NOT EQ: Thread 1382: 25402 -> 0
+NOT EQ: Thread 1801: 12008 -> 0
+NOT EQ: Thread 1964: 8144 -> 0
+NOT EQ: Thread 815: 30189 -> 0
+NOT EQ: Thread 690: 26063 -> 0
+NOT EQ: Thread 408: 23318 -> 0
+NOT EQ: Thread 923: 10797 -> 0
+NOT EQ: Thread 926: 9058 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 9058
+	Execution time was 0.839296 ms
+NOT EQ: Thread 640: 9220 -> 0
+NOT EQ: Thread 1922: 6336 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 393: 608 -> 0
+NOT EQ: Thread 408: 23318 -> 0
+NOT EQ: Thread 26: 32662 -> 0
+NOT EQ: Thread 1116: 4042 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 4042
+	Execution time was 0.822272 ms
+NOT EQ: Thread 1248: 14676 -> 0
+NOT EQ: Thread 1472: 27311 -> 0
+NOT EQ: Thread 385: 11600 -> 0
+NOT EQ: Thread 393: 608 -> 0
+NOT EQ: Thread 408: 23318 -> 0
+NOT EQ: Thread 26: 32662 -> 0
+NOT EQ: Thread 1116: 4042 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 4042
+	Execution time was 0.693920 ms
+NOT EQ: Thread 1123: 9462 -> 0
+NOT EQ: Thread 1249: 28641 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 690: 26063 -> 0
+NOT EQ: Thread 408: 23318 -> 0
+NOT EQ: Thread 26: 32662 -> 0
+NOT EQ: Thread 1307: 2944 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 2944
+	Execution time was 0.782752 ms
+NOT EQ: Thread 1123: 9462 -> 0
+NOT EQ: Thread 1249: 28641 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 1472: 27311 -> 0
+NOT EQ: Thread 26: 32662 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32662
+	Execution time was 0.830560 ms
+NOT EQ: Thread 1123: 9462 -> 0
+NOT EQ: Thread 1472: 27311 -> 0
+NOT EQ: Thread 1249: 28641 -> 0
+NOT EQ: Thread 1256: 24277 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 1449: 3832 -> 0
+NOT EQ: Thread 942: 26018 -> 0
+NOT EQ: Thread 26: 32662 -> 0
+NOT EQ: Thread 1307: 2944 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 2944
+	Execution time was 0.645152 ms
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 1472: 27311 -> 0
+NOT EQ: Thread 385: 11600 -> 0
+NOT EQ: Thread 408: 23318 -> 0
+NOT EQ: Thread 26: 32662 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32662
+	Execution time was 0.780672 ms
+NOT EQ: Thread 1248: 14676 -> 0
+NOT EQ: Thread 1249: 28641 -> 0
+NOT EQ: Thread 1922: 6336 -> 0
+NOT EQ: Thread 1639: 28368 -> 0
+NOT EQ: Thread 1458: 7028 -> 0
+NOT EQ: Thread 26: 32662 -> 0
+NOT EQ: Thread 1307: 2944 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 2944
+	Execution time was 0.830880 ms
+NOT EQ: Thread 1249: 28641 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 1764: 9085 -> 0
+NOT EQ: Thread 744: 15370 -> 0
+NOT EQ: Thread 26: 32662 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32662
+	Execution time was 0.609216 ms
+NOT EQ: Thread 1123: 9462 -> 0
+NOT EQ: Thread 1249: 28641 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 1472: 27311 -> 0
+NOT EQ: Thread 1764: 9085 -> 0
+NOT EQ: Thread 1905: 6879 -> 0
+NOT EQ: Thread 2036: 32715 -> 0
+NOT EQ: Thread 1365: 22161 -> 0
+NOT EQ: Thread 26: 32662 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32715
+	Execution time was 0.666368 ms
+NOT EQ: Thread 1600: 29478 -> 0
+NOT EQ: Thread 1249: 28641 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 1001: 3822 -> 0
+NOT EQ: Thread 690: 26063 -> 0
+NOT EQ: Thread 249: 10195 -> 0
+NOT EQ: Thread 26: 32662 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32662
+	Execution time was 0.984960 ms
+NOT EQ: Thread 513: 32745 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 1472: 27311 -> 0
+NOT EQ: Thread 385: 11600 -> 0
+NOT EQ: Thread 393: 608 -> 0
+NOT EQ: Thread 690: 26063 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 26063
+	Execution time was 0.724416 ms
+NOT EQ: Thread 640: 9220 -> 0
+NOT EQ: Thread 1248: 14676 -> 0
+NOT EQ: Thread 274: 12835 -> 0
+NOT EQ: Thread 408: 23318 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 12835
+	Execution time was 0.586816 ms
+NOT EQ: Thread 1248: 14676 -> 0
+NOT EQ: Thread 640: 9220 -> 0
+NOT EQ: Thread 274: 12835 -> 0
+NOT EQ: Thread 408: 23318 -> 0
+NOT EQ: Thread 26: 32662 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32662
+	Execution time was 0.872864 ms
+NOT EQ: Thread 1600: 29478 -> 0
+NOT EQ: Thread 1249: 28641 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 106: 5844 -> 0
+NOT EQ: Thread 690: 26063 -> 0
+NOT EQ: Thread 249: 10195 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 10195
+	Execution time was 1.084672 ms
+NOT EQ: Thread 1248: 14676 -> 0
+NOT EQ: Thread 1249: 28641 -> 0
+NOT EQ: Thread 1922: 6336 -> 0
+NOT EQ: Thread 2026: 19522 -> 0
+NOT EQ: Thread 690: 26063 -> 0
+NOT EQ: Thread 498: 4686 -> 0
+NOT EQ: Thread 408: 23318 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 23318
+	Execution time was 0.810400 ms
+NOT EQ: Thread 1249: 28641 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 1001: 3822 -> 0
+NOT EQ: Thread 690: 26063 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32651
+	Execution time was 0.892224 ms
+NOT EQ: Thread 1248: 14676 -> 0
+NOT EQ: Thread 1249: 28641 -> 0
+NOT EQ: Thread 393: 608 -> 0
+NOT EQ: Thread 457: 23971 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32651
+	Execution time was 0.632352 ms
+NOT EQ: Thread 1123: 9462 -> 0
+NOT EQ: Thread 1600: 29478 -> 0
+NOT EQ: Thread 1248: 14676 -> 0
+NOT EQ: Thread 1922: 6336 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 1001: 3822 -> 0
+NOT EQ: Thread 408: 23318 -> 0
+NOT EQ: Thread 249: 10195 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 10195
+	Execution time was 0.765952 ms
+NOT EQ: Thread 1249: 28641 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 1764: 9085 -> 0
+NOT EQ: Thread 200: 17773 -> 0
+NOT EQ: Thread 26: 32662 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32662
+	Execution time was 0.737216 ms
+NOT EQ: Thread 1249: 28641 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 1764: 9085 -> 0
+NOT EQ: Thread 2026: 19522 -> 0
+NOT EQ: Thread 426: 23936 -> 0
+NOT EQ: Thread 1905: 6879 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 6879
+	Execution time was 0.671200 ms
+NOT EQ: Thread 1120: 14964 -> 0
+NOT EQ: Thread 1122: 20073 -> 0
+NOT EQ: Thread 1123: 9462 -> 0
+NOT EQ: Thread 1984: 1025 -> 0
+NOT EQ: Thread 1344: 12493 -> 0
+NOT EQ: Thread 942: 26018 -> 0
+NOT EQ: Thread 408: 23318 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 23318
+	Execution time was 0.822176 ms
+NOT EQ: Thread 1249: 28641 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 1001: 3822 -> 0
+NOT EQ: Thread 690: 26063 -> 0
+NOT EQ: Thread 2036: 32715 -> 0
+NOT EQ: Thread 952: 24033 -> 0
+NOT EQ: Thread 26: 32662 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32662
+	Execution time was 0.732960 ms
+NOT EQ: Thread 1123: 9462 -> 0
+NOT EQ: Thread 1248: 14676 -> 0
+NOT EQ: Thread 1408: 1259 -> 0
+NOT EQ: Thread 1472: 27311 -> 0
+NOT EQ: Thread 26: 32662 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32662
+	Execution time was 0.694944 ms
+NOT EQ: Thread 1123: 9462 -> 0
+NOT EQ: Thread 1249: 28641 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 1764: 9085 -> 0
+NOT EQ: Thread 1905: 6879 -> 0
+NOT EQ: Thread 2036: 32715 -> 0
+NOT EQ: Thread 1365: 22161 -> 0
+NOT EQ: Thread 1817: 32499 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32715
+	Execution time was 0.704096 ms
+NOT EQ: Thread 1248: 14676 -> 0
+NOT EQ: Thread 1188: 175 -> 0
+NOT EQ: Thread 1764: 9085 -> 0
+NOT EQ: Thread 1408: 1259 -> 0
+NOT EQ: Thread 2019: 28318 -> 0
+NOT EQ: Thread 1382: 25402 -> 0
+NOT EQ: Thread 200: 17773 -> 0
+NOT EQ: Thread 457: 23971 -> 0
+NOT EQ: Thread 592: 943 -> 0
+NOT EQ: Thread 690: 26063 -> 0
+NOT EQ: Thread 1555: 10443 -> 0
+NOT EQ: Thread 408: 23318 -> 0
+NOT EQ: Thread 967: 29221 -> 0
+NOT EQ: Thread 985: 21028 -> 0
+NOT EQ: Thread 26: 32662 -> 0
+NOT EQ: Thread 382: 28570 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 28570
+	Execution time was 0.969728 ms
+NOT EQ: Thread 1824: 25897 -> 0
+NOT EQ: Thread 1: 6334 -> 0
+NOT EQ: Thread 1382: 25402 -> 0
+NOT EQ: Thread 1001: 3822 -> 0
+NOT EQ: Thread 106: 5844 -> 0
+NOT EQ: Thread 1066: 22816 -> 0
+NOT EQ: Thread 513: 32745 -> 0
+NOT EQ: Thread 534: 17659 -> 0
+NOT EQ: Thread 952: 24033 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 6334
+	Execution time was 0.745088 ms
+NOT EQ: Thread 3: 11478 -> 0
+NOT EQ: Thread 1952: 16439 -> 0
+NOT EQ: Thread 1066: 22816 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32651
+	Execution time was 0.857760 ms
+NOT EQ: Thread 640: 9220 -> 0
+NOT EQ: Thread 768: 27577 -> 0
+NOT EQ: Thread 1639: 28368 -> 0
+NOT EQ: Thread 1807: 29613 -> 0
+NOT EQ: Thread 1233: 10048 -> 0
+NOT EQ: Thread 408: 23318 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 10048
+	Execution time was 0.872992 ms
+NOT EQ: Thread 640: 9220 -> 0
+NOT EQ: Thread 1952: 16439 -> 0
+NOT EQ: Thread 1410: 42 -> 0
+NOT EQ: Thread 106: 5844 -> 0
+NOT EQ: Thread 592: 943 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 943
+	Execution time was 0.662432 ms
+NOT EQ: Thread 1665: 32621 -> 0
+NOT EQ: Thread 674: 12042 -> 0
+NOT EQ: Thread 768: 27577 -> 0
+NOT EQ: Thread 712: 19812 -> 0
+NOT EQ: Thread 1807: 29613 -> 0
+NOT EQ: Thread 408: 23318 -> 0
+NOT EQ: Thread 1566: 24464 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 24464
+	Execution time was 0.691936 ms
+NOT EQ: Thread 1091: 30591 -> 0
+NOT EQ: Thread 1764: 9085 -> 0
+NOT EQ: Thread 1922: 6336 -> 0
+NOT EQ: Thread 1472: 27311 -> 0
+NOT EQ: Thread 1408: 1259 -> 0
+NOT EQ: Thread 1410: 42 -> 0
+NOT EQ: Thread 1317: 14957 -> 0
+NOT EQ: Thread 1832: 6504 -> 0
+NOT EQ: Thread 1001: 3822 -> 0
+NOT EQ: Thread 408: 23318 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 6504
+	Execution time was 0.643200 ms
+NOT EQ: Thread 640: 9220 -> 0
+NOT EQ: Thread 1920: 18709 -> 0
+NOT EQ: Thread 1639: 28368 -> 0
+NOT EQ: Thread 744: 15370 -> 0
+NOT EQ: Thread 1675: 12036 -> 0
+NOT EQ: Thread 1807: 29613 -> 0
+Thread 1183: 32651 -> 0
+NOT EQ: Thread 1160: 2003 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32651
+	Execution time was 0.840992 ms
+NOT EQ: Thread 1249: 28641 -> 0
+NOT EQ: Thread 1922: 6336 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 1001: 3822 -> 0
+NOT EQ: Thread 304: 1626 -> 0
+NOT EQ: Thread 2026: 19522 -> 0
+NOT EQ: Thread 2036: 32715 -> 0
+NOT EQ: Thread 1850: 30742 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 30742
+	Execution time was 0.990848 ms
+NOT EQ: Thread 1920: 18709 -> 0
+NOT EQ: Thread 129: 18875 -> 0
+NOT EQ: Thread 1472: 27311 -> 0
+NOT EQ: Thread 640: 9220 -> 0
+NOT EQ: Thread 584: 25608 -> 0
+NOT EQ: Thread 690: 26063 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 26063
+	Execution time was 0.669280 ms
+NOT EQ: Thread 640: 9220 -> 0
+NOT EQ: Thread 1123: 9462 -> 0
+NOT EQ: Thread 768: 27577 -> 0
+NOT EQ: Thread 690: 26063 -> 0
+NOT EQ: Thread 26: 32662 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32662
+	Execution time was 0.845600 ms
+NOT EQ: Thread 1120: 14964 -> 0
+NOT EQ: Thread 1123: 9462 -> 0
+NOT EQ: Thread 1220: 11149 -> 0
+NOT EQ: Thread 1922: 6336 -> 0
+NOT EQ: Thread 1344: 12493 -> 0
+NOT EQ: Thread 1365: 22161 -> 0
+NOT EQ: Thread 408: 23318 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 23318
+	Execution time was 0.610272 ms
+NOT EQ: Thread 1664: 23000 -> 0
+NOT EQ: Thread 898: 13525 -> 0
+NOT EQ: Thread 1920: 18709 -> 0
+NOT EQ: Thread 1059: 26943 -> 0
+NOT EQ: Thread 1066: 22816 -> 0
+NOT EQ: Thread 1645: 21086 -> 0
+NOT EQ: Thread 880: 7152 -> 0
+NOT EQ: Thread 249: 10195 -> 0
+Thread 1183: 32651 -> 0
+NOT EQ: Thread 1160: 2003 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32651
+	Execution time was 1.040352 ms
+NOT EQ: Thread 674: 12042 -> 0
+NOT EQ: Thread 1091: 30591 -> 0
+NOT EQ: Thread 1920: 18709 -> 0
+NOT EQ: Thread 1312: 8891 -> 0
+NOT EQ: Thread 744: 15370 -> 0
+NOT EQ: Thread 1001: 3822 -> 0
+NOT EQ: Thread 1066: 22816 -> 0
+NOT EQ: Thread 768: 27577 -> 0
+NOT EQ: Thread 782: 31577 -> 0
+NOT EQ: Thread 325: 28112 -> 0
+NOT EQ: Thread 341: 25561 -> 0
+NOT EQ: Thread 408: 23318 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 23318
+	Execution time was 0.704416 ms
+NOT EQ: Thread 1729: 6231 -> 0
+NOT EQ: Thread 1123: 9462 -> 0
+NOT EQ: Thread 640: 9220 -> 0
+NOT EQ: Thread 768: 27577 -> 0
+NOT EQ: Thread 1639: 28368 -> 0
+NOT EQ: Thread 45: 16944 -> 0
+NOT EQ: Thread 1233: 10048 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 10048
+	Execution time was 0.616640 ms
+NOT EQ: Thread 0: 41 -> 0
+NOT EQ: Thread 1: 6334 -> 0
+NOT EQ: Thread 768: 27577 -> 0
+NOT EQ: Thread 1824: 25897 -> 0
+NOT EQ: Thread 1472: 27311 -> 0
+NOT EQ: Thread 1066: 22816 -> 0
+NOT EQ: Thread 1645: 21086 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 6334
+	Execution time was 0.827936 ms
+NOT EQ: Thread 1664: 23000 -> 0
+NOT EQ: Thread 1764: 9085 -> 0
+NOT EQ: Thread 1922: 6336 -> 0
+NOT EQ: Thread 1408: 1259 -> 0
+NOT EQ: Thread 1832: 6504 -> 0
+NOT EQ: Thread 1001: 3822 -> 0
+NOT EQ: Thread 107: 14989 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 6504
+	Execution time was 1.120128 ms
+NOT EQ: Thread 1220: 11149 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 744: 15370 -> 0
+NOT EQ: Thread 690: 26063 -> 0
+NOT EQ: Thread 385: 11600 -> 0
+NOT EQ: Thread 408: 23318 -> 0
+NOT EQ: Thread 318: 20424 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 20424
+	Execution time was 0.689664 ms
+NOT EQ: Thread 1600: 29478 -> 0
+NOT EQ: Thread 1249: 28641 -> 0
+NOT EQ: Thread 1764: 9085 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 690: 26063 -> 0
+Thread 1183: 32651 -> 0
+NOT EQ: Thread 318: 20424 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 20424
+	Execution time was 0.993376 ms
+NOT EQ: Thread 1922: 6336 -> 0
+NOT EQ: Thread 1472: 27311 -> 0
+NOT EQ: Thread 1408: 1259 -> 0
+NOT EQ: Thread 1: 6334 -> 0
+NOT EQ: Thread 1764: 9085 -> 0
+NOT EQ: Thread 942: 26018 -> 0
+NOT EQ: Thread 783: 14629 -> 0
+NOT EQ: Thread 1339: 22086 -> 0
+NOT EQ: Thread 318: 20424 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 22086
+	Execution time was 0.930592 ms
+NOT EQ: Thread 1123: 9462 -> 0
+NOT EQ: Thread 1600: 29478 -> 0
+NOT EQ: Thread 1665: 32621 -> 0
+NOT EQ: Thread 768: 27577 -> 0
+NOT EQ: Thread 690: 26063 -> 0
+NOT EQ: Thread 1566: 24464 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 24464
+	Execution time was 0.629344 ms
+NOT EQ: Thread 1664: 23000 -> 0
+NOT EQ: Thread 1764: 9085 -> 0
+NOT EQ: Thread 640: 9220 -> 0
+NOT EQ: Thread 1920: 18709 -> 0
+NOT EQ: Thread 1922: 6336 -> 0
+NOT EQ: Thread 393: 608 -> 0
+NOT EQ: Thread 78: 900 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 900
+	Execution time was 0.620192 ms
+NOT EQ: Thread 1664: 23000 -> 0
+NOT EQ: Thread 1922: 6336 -> 0
+NOT EQ: Thread 1317: 14957 -> 0
+NOT EQ: Thread 385: 11600 -> 0
+NOT EQ: Thread 408: 23318 -> 0
+NOT EQ: Thread 318: 20424 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 20424
+	Execution time was 0.984160 ms
+NOT EQ: Thread 1952: 16439 -> 0
+NOT EQ: Thread 1410: 42 -> 0
+NOT EQ: Thread 1370: 656 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 656
+	Execution time was 0.616864 ms
+NOT EQ: Thread 1952: 16439 -> 0
+NOT EQ: Thread 1410: 42 -> 0
+NOT EQ: Thread 1066: 22816 -> 0
+NOT EQ: Thread 1458: 7028 -> 0
+NOT EQ: Thread 1116: 4042 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 4042
+	Execution time was 0.978240 ms
+NOT EQ: Thread 768: 27577 -> 0
+NOT EQ: Thread 1472: 27311 -> 0
+NOT EQ: Thread 385: 11600 -> 0
+NOT EQ: Thread 1675: 12036 -> 0
+NOT EQ: Thread 1581: 1088 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 1088
+	Execution time was 0.780448 ms
+NOT EQ: Thread 1091: 30591 -> 0
+NOT EQ: Thread 1376: 10951 -> 0
+NOT EQ: Thread 1377: 14489 -> 0
+NOT EQ: Thread 1770: 1511 -> 0
+NOT EQ: Thread 1807: 29613 -> 0
+NOT EQ: Thread 408: 23318 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 23318
+	Execution time was 0.818368 ms
+NOT EQ: Thread 1922: 6336 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 1639: 28368 -> 0
+NOT EQ: Thread 744: 15370 -> 0
+NOT EQ: Thread 104: 22798 -> 0
+NOT EQ: Thread 1905: 6879 -> 0
+NOT EQ: Thread 385: 11600 -> 0
+NOT EQ: Thread 408: 23318 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 6879
+	Execution time was 0.782528 ms
+NOT EQ: Thread 1280: 19539 -> 0
+NOT EQ: Thread 1807: 29613 -> 0
+NOT EQ: Thread 719: 12931 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 1458: 7028 -> 0
+NOT EQ: Thread 408: 23318 -> 0
+NOT EQ: Thread 1: 6334 -> 0
+NOT EQ: Thread 26: 32662 -> 0
+NOT EQ: Thread 318: 20424 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 20424
+	Execution time was 0.938624 ms
+NOT EQ: Thread 1: 6334 -> 0
+NOT EQ: Thread 1408: 1259 -> 0
+NOT EQ: Thread 1410: 42 -> 0
+NOT EQ: Thread 1317: 14957 -> 0
+NOT EQ: Thread 393: 608 -> 0
+NOT EQ: Thread 408: 23318 -> 0
+NOT EQ: Thread 249: 10195 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 10195
+	Execution time was 0.676288 ms
+NOT EQ: Thread 1123: 9462 -> 0
+NOT EQ: Thread 68: 31107 -> 0
+NOT EQ: Thread 1312: 8891 -> 0
+NOT EQ: Thread 1317: 14957 -> 0
+NOT EQ: Thread 690: 26063 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 14957
+	Execution time was 0.600064 ms
+NOT EQ: Thread 32: 288 -> 0
+NOT EQ: Thread 1665: 32621 -> 0
+Thread 1183: 32651 -> 0
+NOT EQ: Thread 1152: 19022 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32651
+	Execution time was 1.299168 ms
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 1066: 22816 -> 0
+NOT EQ: Thread 385: 11600 -> 0
+NOT EQ: Thread 408: 23318 -> 0
+NOT EQ: Thread 1339: 22086 -> 0
+NOT EQ: Thread 318: 20424 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 20424
+	Execution time was 0.795936 ms
+NOT EQ: Thread 1472: 27311 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 1449: 3832 -> 0
+NOT EQ: Thread 942: 26018 -> 0
+NOT EQ: Thread 674: 12042 -> 0
+NOT EQ: Thread 677: 1670 -> 0
+NOT EQ: Thread 690: 26063 -> 0
+NOT EQ: Thread 26: 32662 -> 0
+NOT EQ: Thread 1116: 4042 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 4042
+	Execution time was 0.751040 ms
+NOT EQ: Thread 1123: 9462 -> 0
+NOT EQ: Thread 1729: 6231 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 1449: 3832 -> 0
+NOT EQ: Thread 408: 23318 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 23318
+	Execution time was 0.811744 ms
+NOT EQ: Thread 1123: 9462 -> 0
+NOT EQ: Thread 1922: 6336 -> 0
+NOT EQ: Thread 942: 26018 -> 0
+NOT EQ: Thread 690: 26063 -> 0
+NOT EQ: Thread 1344: 12493 -> 0
+NOT EQ: Thread 1351: 21478 -> 0
+NOT EQ: Thread 1370: 656 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 21478
+	Execution time was 0.580032 ms
+NOT EQ: Thread 1249: 28641 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 1001: 3822 -> 0
+NOT EQ: Thread 1870: 1949 -> 0
+NOT EQ: Thread 690: 26063 -> 0
+NOT EQ: Thread 408: 23318 -> 0
+NOT EQ: Thread 26: 32662 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32662
+	Execution time was 1.036128 ms
+NOT EQ: Thread 1120: 14964 -> 0
+NOT EQ: Thread 1122: 20073 -> 0
+NOT EQ: Thread 1123: 9462 -> 0
+NOT EQ: Thread 952: 24033 -> 0
+NOT EQ: Thread 408: 23318 -> 0
+NOT EQ: Thread 26: 32662 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32662
+	Execution time was 0.611040 ms
+NOT EQ: Thread 1472: 27311 -> 0
+NOT EQ: Thread 26: 32662 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32662
+	Execution time was 0.635200 ms
+NOT EQ: Thread 1025: 6741 -> 0
+NOT EQ: Thread 1729: 6231 -> 0
+NOT EQ: Thread 1639: 28368 -> 0
+NOT EQ: Thread 744: 15370 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 1449: 3832 -> 0
+NOT EQ: Thread 690: 26063 -> 0
+NOT EQ: Thread 408: 23318 -> 0
+NOT EQ: Thread 26: 32662 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 23318
+	Execution time was 0.648224 ms
+NOT EQ: Thread 1312: 8891 -> 0
+NOT EQ: Thread 1410: 42 -> 0
+NOT EQ: Thread 1120: 14964 -> 0
+NOT EQ: Thread 1123: 9462 -> 0
+NOT EQ: Thread 1001: 3822 -> 0
+NOT EQ: Thread 26: 32662 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32662
+	Execution time was 0.860384 ms
+NOT EQ: Thread 1922: 6336 -> 0
+NOT EQ: Thread 1408: 1259 -> 0
+NOT EQ: Thread 107: 14989 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 14989
+	Execution time was 0.652384 ms
+NOT EQ: Thread 1664: 23000 -> 0
+NOT EQ: Thread 1312: 8891 -> 0
+NOT EQ: Thread 712: 19812 -> 0
+Thread 1183: 32651 -> 0
+NOT EQ: Thread 1152: 19022 -> 0
+NOT EQ: Thread 1160: 2003 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32651
+	Execution time was 0.795968 ms
+NOT EQ: Thread 1665: 32621 -> 0
+NOT EQ: Thread 1370: 656 -> 0
+Thread 1183: 32651 -> 0
+NOT EQ: Thread 1152: 19022 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32651
+	Execution time was 0.690272 ms
+NOT EQ: Thread 2021: 29554 -> 0
+NOT EQ: Thread 1408: 1259 -> 0
+NOT EQ: Thread 1387: 5469 -> 0
+NOT EQ: Thread 942: 26018 -> 0
+NOT EQ: Thread 592: 943 -> 0
+NOT EQ: Thread 690: 26063 -> 0
+NOT EQ: Thread 1307: 2944 -> 0
+NOT EQ: Thread 898: 13525 -> 0
+NOT EQ: Thread 923: 10797 -> 0
+Thread 1183: 32651 -> 0
+NOT EQ: Thread 799: 4611 -> 0
+NOT EQ: Thread 1152: 19022 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32651
+	Execution time was 0.827136 ms
+NOT EQ: Thread 1472: 27311 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32651
+	Execution time was 0.757440 ms
+NOT EQ: Thread 512: 17124 -> 0
+NOT EQ: Thread 1025: 6741 -> 0
+NOT EQ: Thread 1920: 18709 -> 0
+NOT EQ: Thread 1472: 27311 -> 0
+NOT EQ: Thread 1410: 42 -> 0
+NOT EQ: Thread 75: 6422 -> 0
+NOT EQ: Thread 1870: 1949 -> 0
+NOT EQ: Thread 1458: 7028 -> 0
+NOT EQ: Thread 408: 23318 -> 0
+NOT EQ: Thread 1: 6334 -> 0
+NOT EQ: Thread 3: 11478 -> 0
+NOT EQ: Thread 26: 32662 -> 0
+NOT EQ: Thread 1339: 22086 -> 0
+NOT EQ: Thread 318: 20424 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 20424
+	Execution time was 0.885536 ms
+NOT EQ: Thread 1344: 12493 -> 0
+NOT EQ: Thread 1639: 28368 -> 0
+NOT EQ: Thread 617: 25605 -> 0
+NOT EQ: Thread 107: 14989 -> 0
+NOT EQ: Thread 1792: 5677 -> 0
+NOT EQ: Thread 1801: 12008 -> 0
+NOT EQ: Thread 1807: 29613 -> 0
+NOT EQ: Thread 26: 32662 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32662
+	Execution time was 0.840864 ms
+NOT EQ: Thread 1248: 14676 -> 0
+NOT EQ: Thread 1249: 28641 -> 0
+NOT EQ: Thread 1472: 27311 -> 0
+NOT EQ: Thread 408: 23318 -> 0
+NOT EQ: Thread 26: 32662 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32662
+	Execution time was 1.024576 ms
+NOT EQ: Thread 1248: 14676 -> 0
+NOT EQ: Thread 194: 9314 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 744: 15370 -> 0
+NOT EQ: Thread 1001: 3822 -> 0
+NOT EQ: Thread 1066: 22816 -> 0
+NOT EQ: Thread 879: 28074 -> 0
+NOT EQ: Thread 690: 26063 -> 0
+NOT EQ: Thread 26: 32662 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32662
+	Execution time was 0.772352 ms
+NOT EQ: Thread 1123: 9462 -> 0
+NOT EQ: Thread 1472: 27311 -> 0
+NOT EQ: Thread 1001: 3822 -> 0
+NOT EQ: Thread 690: 26063 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 26063
+	Execution time was 0.825152 ms
+NOT EQ: Thread 1248: 14676 -> 0
+NOT EQ: Thread 1249: 28641 -> 0
+NOT EQ: Thread 1382: 25402 -> 0
+NOT EQ: Thread 1001: 3822 -> 0
+NOT EQ: Thread 106: 5844 -> 0
+NOT EQ: Thread 1339: 22086 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 22086
+	Execution time was 0.900256 ms
+NOT EQ: Thread 1600: 29478 -> 0
+NOT EQ: Thread 1413: 3154 -> 0
+NOT EQ: Thread 1248: 14676 -> 0
+NOT EQ: Thread 1249: 28641 -> 0
+NOT EQ: Thread 1256: 24277 -> 0
+NOT EQ: Thread 1001: 3822 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32651
+	Execution time was 1.163040 ms
+NOT EQ: Thread 640: 9220 -> 0
+NOT EQ: Thread 1248: 14676 -> 0
+NOT EQ: Thread 1922: 6336 -> 0
+NOT EQ: Thread 1801: 12008 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32651
+	Execution time was 0.871904 ms
+NOT EQ: Thread 1664: 23000 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 448: 29643 -> 0
+NOT EQ: Thread 1764: 9085 -> 0
+NOT EQ: Thread 744: 15370 -> 0
+NOT EQ: Thread 1807: 29613 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 29613
+	Execution time was 0.894784 ms
+NOT EQ: Thread 1472: 27311 -> 0
+NOT EQ: Thread 1862: 15712 -> 0
+NOT EQ: Thread 1639: 28368 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 1449: 3832 -> 0
+NOT EQ: Thread 617: 25605 -> 0
+NOT EQ: Thread 106: 5844 -> 0
+NOT EQ: Thread 107: 14989 -> 0
+NOT EQ: Thread 1817: 32499 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 3832
+	Execution time was 0.838240 ms
+NOT EQ: Thread 1729: 6231 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 1382: 25402 -> 0
+NOT EQ: Thread 1001: 3822 -> 0
+NOT EQ: Thread 719: 12931 -> 0
+NOT EQ: Thread 690: 26063 -> 0
+NOT EQ: Thread 2036: 32715 -> 0
+NOT EQ: Thread 26: 32662 -> 0
+Thread 1183: 32651 -> 0
+NOT EQ: Thread 1152: 19022 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32651
+	Execution time was 1.226656 ms
+NOT EQ: Thread 1729: 6231 -> 0
+NOT EQ: Thread 1123: 9462 -> 0
+NOT EQ: Thread 1922: 6336 -> 0
+NOT EQ: Thread 1413: 3154 -> 0
+NOT EQ: Thread 744: 15370 -> 0
+NOT EQ: Thread 1248: 14676 -> 0
+NOT EQ: Thread 1249: 28641 -> 0
+NOT EQ: Thread 1256: 24277 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 24277
+	Execution time was 0.847424 ms
+NOT EQ: Thread 457: 23971 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 1449: 3832 -> 0
+NOT EQ: Thread 104: 22798 -> 0
+NOT EQ: Thread 744: 15370 -> 0
+NOT EQ: Thread 1066: 22816 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 22816
+	Execution time was 0.571360 ms
+NOT EQ: Thread 1664: 23000 -> 0
+NOT EQ: Thread 1920: 18709 -> 0
+NOT EQ: Thread 1922: 6336 -> 0
+NOT EQ: Thread 408: 23318 -> 0
+NOT EQ: Thread 289: 22296 -> 0
+NOT EQ: Thread 318: 20424 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 20424
+	Execution time was 0.748032 ms
+NOT EQ: Thread 1249: 28641 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 1001: 3822 -> 0
+NOT EQ: Thread 690: 26063 -> 0
+NOT EQ: Thread 1365: 22161 -> 0
+NOT EQ: Thread 408: 23318 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 22161
+	Execution time was 0.697728 ms
+NOT EQ: Thread 32: 288 -> 0
+NOT EQ: Thread 1920: 18709 -> 0
+NOT EQ: Thread 1472: 27311 -> 0
+NOT EQ: Thread 1675: 12036 -> 0
+NOT EQ: Thread 408: 23318 -> 0
+NOT EQ: Thread 1339: 22086 -> 0
+NOT EQ: Thread 318: 20424 -> 0
+Thread 1183: 32651 -> 0
+NOT EQ: Thread 1160: 2003 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32651
+	Execution time was 0.771328 ms
+NOT EQ: Thread 1729: 6231 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 744: 15370 -> 0
+NOT EQ: Thread 690: 26063 -> 0
+NOT EQ: Thread 385: 11600 -> 0
+NOT EQ: Thread 408: 23318 -> 0
+NOT EQ: Thread 318: 20424 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 20424
+	Execution time was 0.799360 ms
+NOT EQ: Thread 1729: 6231 -> 0
+NOT EQ: Thread 640: 9220 -> 0
+NOT EQ: Thread 1920: 18709 -> 0
+NOT EQ: Thread 1639: 28368 -> 0
+NOT EQ: Thread 1001: 3822 -> 0
+NOT EQ: Thread 26: 32662 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32662
+	Execution time was 0.712480 ms
+NOT EQ: Thread 1122: 20073 -> 0
+NOT EQ: Thread 1123: 9462 -> 0
+NOT EQ: Thread 1344: 12493 -> 0
+NOT EQ: Thread 1964: 8144 -> 0
+NOT EQ: Thread 690: 26063 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 9462
+	Execution time was 0.627648 ms
+NOT EQ: Thread 513: 32745 -> 0
+NOT EQ: Thread 1249: 28641 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 1472: 27311 -> 0
+NOT EQ: Thread 106: 5844 -> 0
+NOT EQ: Thread 107: 14989 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 14989
+	Execution time was 0.623872 ms
+NOT EQ: Thread 1249: 28641 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 200: 17773 -> 0
+NOT EQ: Thread 744: 15370 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32651
+	Execution time was 0.715168 ms
+NOT EQ: Thread 1249: 28641 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 1472: 27311 -> 0
+NOT EQ: Thread 107: 14989 -> 0
+NOT EQ: Thread 1645: 21086 -> 0
+NOT EQ: Thread 952: 24033 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 24033
+	Execution time was 0.802496 ms
+NOT EQ: Thread 1410: 42 -> 0
+NOT EQ: Thread 1964: 8144 -> 0
+NOT EQ: Thread 1792: 5677 -> 0
+NOT EQ: Thread 1801: 12008 -> 0
+NOT EQ: Thread 1807: 29613 -> 0
+NOT EQ: Thread 408: 23318 -> 0
+NOT EQ: Thread 1312: 8891 -> 0
+NOT EQ: Thread 1339: 22086 -> 0
+NOT EQ: Thread 26: 32662 -> 0
+NOT EQ: Thread 1116: 4042 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32662
+	Execution time was 0.852608 ms
+NOT EQ: Thread 1122: 20073 -> 0
+NOT EQ: Thread 1344: 12493 -> 0
+NOT EQ: Thread 107: 14989 -> 0
+NOT EQ: Thread 1964: 8144 -> 0
+NOT EQ: Thread 1807: 29613 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 29613
+	Execution time was 0.795744 ms
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 1764: 9085 -> 0
+NOT EQ: Thread 744: 15370 -> 0
+NOT EQ: Thread 200: 17773 -> 0
+NOT EQ: Thread 385: 11600 -> 0
+NOT EQ: Thread 408: 23318 -> 0
+NOT EQ: Thread 26: 32662 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32662
+	Execution time was 0.623104 ms
+NOT EQ: Thread 1059: 26943 -> 0
+NOT EQ: Thread 1764: 9085 -> 0
+NOT EQ: Thread 768: 27577 -> 0
+NOT EQ: Thread 1922: 6336 -> 0
+NOT EQ: Thread 107: 14989 -> 0
+NOT EQ: Thread 690: 26063 -> 0
+NOT EQ: Thread 408: 23318 -> 0
+NOT EQ: Thread 0: 41 -> 0
+NOT EQ: Thread 26: 32662 -> 0
+Thread 1183: 32651 -> 0
+NOT EQ: Thread 1160: 2003 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32651
+	Execution time was 0.657824 ms
+NOT EQ: Thread 1123: 9462 -> 0
+NOT EQ: Thread 592: 943 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 1449: 3832 -> 0
+NOT EQ: Thread 1458: 7028 -> 0
+NOT EQ: Thread 26: 32662 -> 0
+Thread 1183: 32651 -> 0
+NOT EQ: Thread 1160: 2003 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32651
+	Execution time was 0.862368 ms
+NOT EQ: Thread 1249: 28641 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 1807: 29613 -> 0
+NOT EQ: Thread 952: 24033 -> 0
+NOT EQ: Thread 26: 32662 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32662
+	Execution time was 0.982784 ms
+NOT EQ: Thread 1249: 28641 -> 0
+NOT EQ: Thread 1440: 29561 -> 0
+NOT EQ: Thread 1472: 27311 -> 0
+NOT EQ: Thread 1001: 3822 -> 0
+NOT EQ: Thread 690: 26063 -> 0
+NOT EQ: Thread 408: 23318 -> 0
+Thread 1183: 32651 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 23318
+	Execution time was 1.249952 ms
+NOT EQ: Thread 768: 27577 -> 0
+NOT EQ: Thread 1001: 3822 -> 0
+NOT EQ: Thread 385: 11600 -> 0
+NOT EQ: Thread 408: 23318 -> 0
+Thread 1183: 32651 -> 0
+NOT EQ: Thread 1152: 19022 -> 0
+CPU: Highest mark recorded 99.993896 was by student 32651
+Atomics: Highest mark recorded 99.993896 was by student 32651
+	Execution time was 0.635904 ms
