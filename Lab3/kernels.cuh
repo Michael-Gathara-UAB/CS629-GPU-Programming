@@ -55,35 +55,16 @@ __global__ void maximumMark_recursive_kernel(student_records *d_records, student
 
 }
 
-
 //Task 3) Using block level reduction
 __global__ void maximumMark_SM_kernel(student_records *d_records, student_records *d_reduced_records) {
 	int idx = blockIdx.x * blockDim.x + threadIdx.x;
 
 	//Task 3.1) Load a single student record into shared memory
-    extern __shared__ student_record s_records[];
-
-	if (idx < NUM_RECORDS) {
-		// Each thread loads one student record into shared memory
-		s_records[threadIdx.x].student_id = d_records->student_ids[idx];
-		s_records[threadIdx.x].assignment_mark = d_records->assignment_marks[idx];
-	}
-	__syncthreads();
 
 	//Task 3.2) Reduce in shared memory in parallel
-    for (int stride = 1; stride < blockDim.x; stride *= 2) {
-		int index = 2 * stride * threadIdx.x;
-		if (index < blockDim.x) {
-			if (s_records[index].assignment_mark < s_records[index + stride].assignment_mark) {
-				s_records[index] = s_records[index + stride];
-			}
-		}
-		__syncthreads(); 
-	}
 
-    if (threadIdx.x == 0) {
-		d_reduced_records[blockIdx.x] = s_records[0];
-	}
+	//Task 3.3) Write the result
+
 }
 
 //Task 4) Using warp level reduction
