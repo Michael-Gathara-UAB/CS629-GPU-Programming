@@ -20,8 +20,8 @@ typedef struct student_record student_record;
 typedef struct student_records student_records;
 
 
-__device__ float d_max_mark = 0;
-__device__ int d_max_mark_student_id = 0;
+__device__ volatile float d_max_mark = 0;
+__device__ volatile int d_max_mark_student_id = 0;
 __device__ inline float atomicCASFloat(float* address, float compare, float val) {
     int* address_as_i = (int*)address;
     int old = __float_as_int(compare);
@@ -38,21 +38,24 @@ __device__ inline float atomicCASFloat(float* address, float compare, float val)
 // Naive atomic implementation
 __global__ void maximumMark_atomic_kernel(student_records *d_records) {
     int idx = blockIdx.x * blockDim.x + threadIdx.x;
-    if (idx >= NUM_RECORDS) return;
-	__threadfence();
-	__syncthreads();
+    if (idx < NUM_RECORDS) { // Ensure we do not go out of bounds
+        float mark = d_records->assignment_marks[idx];
+        int id = d_records->student_ids[idx];
 
-    float mark = d_records->assignment_marks[idx];
-    int id = d_records->student_ids[idx];
-
-    float old_max_mark = atomicCASFloat(&d_max_mark, d_max_mark, mark);
-	__threadfence();
-	__syncthreads();
-
-    if (mark > old_max_mark) {
-        __threadfence();
-		__syncthreads();
-        atomicExch(&d_max_mark_student_id, id);
+        // While not succeeded
+        while(true) {
+            float old_max_mark = atomicExch((float*)&d_max_mark, d_max_mark);
+            if(mark > old_max_mark) {
+                // Try updating
+                if(atomicCAS((int*)&d_max_mark, __float_as_int(old_max_mark), __float_as_int(mark)) == __float_as_int(old_max_mark)) {
+										d_max_mark_student_id = id;
+                    break;
+                }
+            } else {
+                // No need to update, just break
+                break;
+            }
+        }
     }
 }
 
@@ -65,6 +68,7 @@ __device__ __forceinline__ float atomicMaxFloat (float * addr, float value) {
 
     return old;
 }
+
 //Task 2) Recursive Reduction
 __global__ void maximumMark_recursive_kernel(student_records *d_records, student_records *d_reduced_records) {
 	int idx = blockIdx.x * blockDim.x + threadIdx.x;
