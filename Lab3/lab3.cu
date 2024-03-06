@@ -147,45 +147,47 @@ void maximumMark_atomic(student_records *h_records, student_records *h_records_r
 	cudaEventDestroy(stop);
 }
 
-//Task 2)
-void maximumMark_recursive(student_records *h_records, student_records *h_records_result, student_records *d_records, student_records *d_records_result){
-	int i;
-	float max_mark;
-	int max_mark_student_id;
-	student_records *d_records_temp;
-	float time;
-	cudaEvent_t start, stop;
-	
-	max_mark = 0;
-	max_mark_student_id = 0.0f;
-	
-	cudaEventCreate(&start);
-	cudaEventCreate(&stop);
-	
-	//memory copy records to device
-	cudaMemcpy(d_records, h_records, sizeof(student_records), cudaMemcpyHostToDevice);
-	checkCUDAError("Recursive: CUDA memcpy");
+__global__ void maximumMark_recursive_kernel(student_records *d_records, student_records *d_reduced_records, int num_records) {
+    extern __shared__ student_record sdata[];
 
-	cudaEventRecord(start, 0);
-	
-	//Task 2.3) Recursively call GPU steps until there are THREADS_PER_BLOCK values left
+    int tid = threadIdx.x;
+    int i = blockIdx.x * (blockDim.x * 2) + threadIdx.x;
 
-	//Task 2.4) copy back the final THREADS_PER_BLOCK values
+    // Task 2.1) Load student records into shared memory
+    if (i < num_records) {
+        sdata[tid].assignment_mark = d_records->assignment_marks[i];
+        sdata[tid].student_id = d_records->student_ids[i];
+        if (i + blockDim.x < num_records) {
+            float nextMark = d_records->assignment_marks[i + blockDim.x];
+            if (nextMark > sdata[tid].assignment_mark) {
+                sdata[tid].assignment_mark = nextMark;
+                sdata[tid].student_id = d_records->student_ids[i + blockDim.x];
+            }
+        }
+    } else {
+        sdata[tid].assignment_mark = -1.0;
+        sdata[tid].student_id = -1;
+    }
+    __syncthreads();
 
-	//Task 2.5) reduce the final THREADS_PER_BLOCK values on CPU
+    // Task 2.2) Compare two values and write the result to d_reduced_records
+    for (int s = blockDim.x / 2; s > 0; s >>= 1) {
+        if (tid < s && (i + s) < num_records) {
+            if (sdata[tid + s].assignment_mark > sdata[tid].assignment_mark) {
+                sdata[tid].assignment_mark = sdata[tid + s].assignment_mark;
+                sdata[tid].student_id = sdata[tid + s].student_id;
+            }
+        }
+        __syncthreads();
+    }
 
-
-	cudaEventRecord(stop, 0);
-	cudaEventSynchronize(stop);
-	cudaEventElapsedTime(&time, start, stop);
-
-	//output the result
-	printf("Recursive: Highest mark recorded %f was by student %d\n", max_mark, max_mark_student_id);
-	printf("\tExecution time was %f ms\n", time);
-
-	cudaEventDestroy(start);
-	cudaEventDestroy(stop);
+    // Write the result for this block to d_reduced_records
+    if (tid == 0) {
+        d_reduced_records->assignment_marks[blockIdx.x] = sdata[0].assignment_mark;
+        d_reduced_records->student_ids[blockIdx.x] = sdata[0].student_id;
+    }
 }
+
 
 //Task 3)
 void maximumMark_SM(student_records *h_records, student_records *h_records_result, student_records *d_records, student_records *d_records_result){
@@ -208,14 +210,6 @@ void maximumMark_SM(student_records *h_records, student_records *h_records_resul
 	cudaEventRecord(start, 0);
 	
 	//Task 3.4) Call the shared memory reduction kernel
-    int threadsPerBlock = 256; 
-    int blocksPerGrid = (NUM_RECORDS + threadsPerBlock - 1) / threadsPerBlock;
-	student_records *d_reduced_records;
-	cudaMalloc((void**)&d_reduced_records, blocksPerGrid * sizeof(student_record));
-	checkCUDAError("CUDA malloc for reduced records");
-
-    maximumMark_SM_kernel<<<blocksPerGrid, threadsPerBlock, threadsPerBlock * sizeof(student_record)>>>(d_records, d_reduced_records);
-
     //Task 3.5) Copy the final block values back to CPU
     cudaMemcpy(h_records_result->assignment_marks, d_reduced_records, blocksPerGrid * sizeof(student_record), cudaMemcpyDeviceToHost);
 
@@ -237,7 +231,6 @@ void maximumMark_SM(student_records *h_records, student_records *h_records_resul
 
 	cudaEventDestroy(start);
 	cudaEventDestroy(stop);
-	cudaFree(d_reduced_records);
 }
 
 //Task 4)
