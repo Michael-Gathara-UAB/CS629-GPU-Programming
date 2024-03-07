@@ -1,4 +1,5 @@
 #lang racket
+(require racket/trace)
 
 (define (foo ls)
     (define v (baz ls))
@@ -15,5 +16,8 @@
     (let ([q (cdr q)])
         (car q)))
 
-(foo `(3 2 1))
+(trace foo)
+(trace boop)
+(trace baz)
+(foo `(3 2 1)) ; prints out `(3 2 3 2 1)
     
