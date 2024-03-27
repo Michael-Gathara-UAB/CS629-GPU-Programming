@@ -223,7 +223,7 @@ void maximumMark_SM(student_records *h_records, student_records *h_records_resul
 	cudaEventCreate(&stop);
 	
 	//memory copy records to device
-	cudaMemcpy(d_records, h_records, sizeof(student_records), cudaMemcpyHostToDevice);
+	cudaMemcpy(d_records, h_records, sizeof(student_records), cudaMemcpyHostToDevice);		
 	checkCUDAError("SM: CUDA memcpy");
 
 	cudaEventRecord(start, 0);
