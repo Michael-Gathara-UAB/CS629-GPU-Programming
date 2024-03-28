@@ -1,95 +1,168 @@
-#include <stdlib.h>
+/*
+* Source code for this lab class is modifed from the book CUDA by Exmaple and provided by permission of NVIDIA Corporation
+*/
+
 #include <stdio.h>
+#include <stdlib.h>
+#include <string>
 #include <math.h>
+#include <sstream>
+#include <vector_types.h>
+#include <vector_functions.h>
 #include "cuda_runtime.h"
 #include "device_launch_parameters.h"
 
-#define N 4194304
-#define THREADS_PER_BLOCK 128
+#define IMAGE_DIM 2048
 
-void checkCUDAError(const char*);
-void random_ints(int *a);
+#define rnd( x ) (x * rand() / RAND_MAX)
+#define INF     2e10f
 
+void output_image_file(uchar3* image, std::string filename);
+void checkCUDAError(const char *msg);
 
-// task 1.1
-__device__ int d_a[N];
-__device__ int d_b[N];
-__device__ int d_c[N];
+struct Sphere {
+    float   r, b, g;
+    float   radius;
+    float   x, y, z;
+};
 
-__global__ void vectorAdd(int max) {
-    int i = blockIdx.x * blockDim.x + threadIdx.x;
-    d_c[i] = d_a[i] + d_b[i];
+/* Device Code */
+
+__constant__ unsigned int d_sphere_count;
+
+__global__ void ray_trace(uchar3 *image, Sphere *d_s) {
+    // map from threadIdx/BlockIdx to pixel position
+    int x = threadIdx.x + blockIdx.x * blockDim.x;
+    int y = threadIdx.y + blockIdx.y * blockDim.y;
+    int offset = x + y * blockDim.x * gridDim.x;
+
+    float min_z = INF;
+    float r = 0, g = 0, b = 0;
+    // Add your implementation here
+    for(int i = 0; i<d_sphere_count;i++){
+        float x_sphere = d_s[i].x;
+        float y_sphere = d_s[i].y;
+        float z_sphere = d_s[i].z;
+        float radius = d_s[i].radius;
+
+        float dif_x = x_sphere - x;
+        float dif_y = y_sphere - y;
+        if ((pow(dif_x,2) + pow(dif_y,2)) < pow(radius,2)){
+            float dz = sqrt((pow(radius,2) - pow(dif_x,2) - pow(dif_y,2)));
+            float z = z_sphere - dz;
+            if (z<min_z){
+                min_z = z;
+                float c_ratio = dz / radius;
+                r = d_s[i].r * c_ratio;
+                b = d_s[i].b * c_ratio;
+                g = d_s[i].g * c_ratio;
+            }
+        }
+    }
+
+    image[offset].x = (int)(r);
+    image[offset].y = (int)(g);
+    image[offset].z = (int)(b);
 }
 
-int main(void) {
-    int *a, *b, *c;			// host copies of a, b, c
-    int errors;
-    unsigned int size = N * sizeof(int);
+/* Host code */
 
-    // Alloc space for host copies of a, b, c and setup input values
-    a = (int *)malloc(size); random_ints(a);
-    b = (int *)malloc(size); random_ints(b);
-    c = (int *)malloc(size);
+float test(unsigned int sphere_count) {
+    unsigned int image_size, spheres_size;
+    uchar3 *d_image;
+    uchar3 *h_image;
+    cudaEvent_t     start, stop;
+    Sphere h_s[sphere_count];
+    Sphere *d_s;
+    float timing_data;
 
-    // Copy inputs to device
-    cudaMemcpyToSymbol(d_a, a, size);
-    cudaMemcpyToSymbol(d_b, b, size);
-    checkCUDAError("CUDA memcpy to symbol");
+    image_size = IMAGE_DIM*IMAGE_DIM*sizeof(uchar3);
+    spheres_size = sizeof(Sphere)*sphere_count;
 
-    // task 1.2 Record timings
-    cudaEvent_t start, stop;
+    // create timers
     cudaEventCreate(&start);
     cudaEventCreate(&stop);
 
-    cudaEventRecord(start);
+    // allocate memory on the GPU for the output image
+    cudaMalloc((void**)&d_image, image_size);
+    cudaMalloc((void**)&d_s, spheres_size);
+    checkCUDAError("CUDA malloc");
 
-    // Launch add() kernel on GPU
-    vectorAdd << <N / THREADS_PER_BLOCK, THREADS_PER_BLOCK >> >(N);
-    checkCUDAError("CUDA kernel");
+    // create some random spheres
+    for (int i = 0; i<sphere_count; i++) {
+        h_s[i].r = rnd(1.0f)*255;
+        h_s[i].g = rnd(1.0f)*255;
+        h_s[i].b = rnd(1.0f)*255;
+        h_s[i].x = rnd((float)IMAGE_DIM);
+        h_s[i].y = rnd((float)IMAGE_DIM);
+        h_s[i].z = rnd((float)IMAGE_DIM);
+        h_s[i].radius = rnd(100.0f) + 20;
+    }
+    //copy to device memory
+    cudaMemcpy(d_s, h_s, spheres_size, cudaMemcpyHostToDevice);
+    checkCUDAError("CUDA memcpy to device");
 
-    cudaEventRecord(stop);
+    //generate host image
+    h_image = (uchar3*)malloc(image_size);
 
+    //cuda layout
+    dim3    blocksPerGrid(IMAGE_DIM / 16, IMAGE_DIM / 16);
+    dim3    threadsPerBlock(16, 16);
+
+    cudaMemcpyToSymbol(d_sphere_count, &sphere_count, sizeof(unsigned int));
+    checkCUDAError("CUDA copy sphere count to device");
+
+    // generate a image from the sphere data
+    cudaEventRecord(start, 0);
+    ray_trace << <blocksPerGrid, threadsPerBlock >> >(d_image, d_s);
+    cudaEventRecord(stop, 0);
     cudaEventSynchronize(stop);
+    cudaEventElapsedTime(&timing_data, start, stop);
+    checkCUDAError("kernel (normal)");
 
-    float ms = 0;
-    cudaEventElapsedTime(&ms, start, stop);
 
-    // Copy result back to host
-    cudaMemcpyFromSymbol(c,d_c,size);
-    checkCUDAError("CUDA memcpy");
+    // copy the image back from the GPU for output to file
+    cudaMemcpy(h_image, d_image, image_size, cudaMemcpyDeviceToHost);
+    checkCUDAError("CUDA memcpy from device");
 
-    printf("Kernel Execution Time: %fms\n", ms);
+    // output image
+    std::ostringstream filenameStream;
+    filenameStream << "output_" << sphere_count << ".ppm";
+    std::string filename = filenameStream.str();
+    output_image_file(h_image,filename);
+    //output_image_file(h_image, "output_" + std::to_string(sphere_count) + ".ppm");
 
-    // task 1.3
-    cudaDeviceProp d_prop;
-    int deviceId;
-    double memoryClockRate, memoryBusWidth, theoreticalBW;
-
-    cudaGetDevice(&deviceId);
-    cudaGetDeviceProperties(&d_prop,deviceId);
-
-    memoryClockRate = d_prop.memoryClockRate * 1e-6;
-    memoryBusWidth = d_prop.memoryBusWidth;
-    theoreticalBW = ((memoryClockRate * memoryBusWidth) * 2)/8;
-
-    printf("Theoretical Memory Bandwidth: %.2fGB/s\n",theoreticalBW);
-
-    // task 1.4
-    double r_bytes, w_bytes, measuredBW;
-    r_bytes = N * 8;
-    w_bytes = N * 4;
-    measuredBW = ((r_bytes + w_bytes)/(ms/1000))/1e9 ;
-
-    printf("Measured Memory Bandwidth: %.2fGB/s\n",measuredBW);
-
-    // Cleanup
+    //cleanup
     cudaEventDestroy(start);
     cudaEventDestroy(stop);
+    cudaFree(d_image);
+    cudaFree(d_s);
+    free(h_image);
 
-    free(a); free(b); free(c);
-    checkCUDAError("CUDA cleanup");
+    return timing_data;
+}
 
-    return 0;
+void output_image_file(uchar3* image, std::string filename)
+{
+    FILE *f; //output file handle
+
+    //open the output file and write header info for PPM filetype
+    f = fopen(filename.c_str(), "wb");
+    if (f == NULL){
+        fprintf(stderr, "Error opening 'output.ppm' output file\n");
+        exit(1);
+    }
+    fprintf(f, "P6\n");
+    fprintf(f, "# CS629/729 Lab 4 Task2\n");
+    fprintf(f, "%d %d\n%d\n", IMAGE_DIM, IMAGE_DIM, 255);
+    for (int x = 0; x < IMAGE_DIM; x++){
+        for (int y = 0; y < IMAGE_DIM; y++){
+            int i = x + y*IMAGE_DIM;
+            fwrite(&image[i], sizeof(unsigned char), 3, f); //only write rgb (ignoring a)
+        }
+    }
+
+    fclose(f);
 }
 
 void checkCUDAError(const char *msg)
@@ -102,9 +175,11 @@ void checkCUDAError(const char *msg)
     }
 }
 
-void random_ints(int *a)
-{
-    for (unsigned int i = 0; i < N; i++){
-        a[i] = rand();
+int main() {
+
+    printf("Timing Data Table\n Spheres | Time\n");
+    for (unsigned int sphere_count = 16; sphere_count <= 2048; sphere_count *= 2) {
+        float timing_data = test(sphere_count);
+        printf(" %-7i | %-6.3f\n", sphere_count, timing_data);
     }
 }

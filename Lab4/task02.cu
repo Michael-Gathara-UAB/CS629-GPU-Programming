@@ -6,10 +6,23 @@
 #include <stdlib.h>
 #include <string>
 #include <math.h>
+#include <sstream>
 #include <vector_types.h>
 #include <vector_functions.h>
 #include "cuda_runtime.h"
 #include "device_launch_parameters.h"
+#include <string>
+#include <sstream>
+namespace patch
+{
+    template < typename T > std::string to_string( const T& n )
+    {
+        std::ostringstream stm ;
+        stm << n ;
+        return stm.str() ;
+    }
+}
+// https://stackoverflow.com/a/20861692/11009561
 
 #define IMAGE_DIM 2048
 
@@ -36,11 +49,24 @@ __global__ void ray_trace(uchar3 *image, Sphere *d_s) {
 	int offset = x + y * blockDim.x * gridDim.x;
 
 	// Add your implementation here
+    float check_z = INF;
+    float red = 0, green = 0, blue = 0;
 
+    for(int i = 0; i < d_sphere_count; i++){
+        if ((pow(d_s[i].x - x,2) + pow(d_s[i].y - y,2)) < pow(d_s[i].radius,2)){
+            if (d_s[i].z - sqrt((pow(d_s[i].radius,2) - pow(d_s[i].x - x,2) - pow(d_s[i].y - y,2))) < check_z){
+                check_z = d_s[i].z - sqrt((pow(d_s[i].radius,2) - pow(d_s[i].x - x,2) - pow(d_s[i].y - y,2)));
+                float c_ratio = sqrt((pow(d_s[i].radius,2) - pow(d_s[i].x - x,2) - pow(d_s[i].y - y,2))) / d_s[i].radius;
+                red = d_s[i].r * c_ratio;
+                green = d_s[i].g * c_ratio;
+                blue = d_s[i].b * c_ratio;
+            }
+        }
+    }
 
-	image[offset].x = (int)(r);
-	image[offset].y = (int)(g);
-	image[offset].z = (int)(b);
+	image[offset].x = (int)(red);
+	image[offset].y = (int)(green);
+	image[offset].z = (int)(blue);
 }
 
 /* Host code */
@@ -104,9 +130,8 @@ float test(unsigned int sphere_count) {
 	checkCUDAError("CUDA memcpy from device");
 
 	// output image
-	output_image_file(h_image, "output_" + std::to_string(sphere_count) + ".ppm");
-
-	//cleanup
+    output_image_file(h_image, "output_" + patch::to_string(sphere_count) + ".ppm");
+    //cleanup
 	cudaEventDestroy(start);
 	cudaEventDestroy(stop);
 	cudaFree(d_image);
