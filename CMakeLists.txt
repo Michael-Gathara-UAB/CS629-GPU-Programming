@@ -7,3 +7,5 @@ set(CMAKE_CXX_STANDARD 11)
 
 # Set CUDA architecture for all targets
 set(CMAKE_CUDA_ARCHITECTURES "80")
+
+add_subdirectory(Lab4)

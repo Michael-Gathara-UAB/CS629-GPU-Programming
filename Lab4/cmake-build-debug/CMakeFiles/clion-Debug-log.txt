@@ -1,0 +1,28 @@
+/data/user/home/mikegtr/.cache/JetBrains/RemoteDev/dist/1466a3f304df6_CLion-231.8109.141/bin/cmake/linux/x64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/data/user/home/mikegtr/.cache/JetBrains/RemoteDev/dist/1466a3f304df6_CLion-231.8109.141/bin/ninja/linux/x64/ninja -DCUDAToolkit_ROOT=/share/qapps/rc/software/CUDA/12.2.0 -DCMAKE_CUDA_COMPILER=/share/apps/rc/software/CUDA/12.2.0/bin/nvcc -G Ninja -S /data/user/home/mikegtr/CS629/Lab4 -B /data/user/home/mikegtr/CS629/Lab4/cmake-build-debug
+-- The CXX compiler identification is GNU 4.8.5
+-- The CUDA compiler identification is NVIDIA 12.2.91
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Detecting CUDA compiler ABI info
+-- Detecting CUDA compiler ABI info - done
+-- Check for working CUDA compiler: /share/apps/rc/software/CUDA/12.2.0/bin/nvcc - skipped
+-- Detecting CUDA compile features
+-- Detecting CUDA compile features - done
+-- Configuring done
+CMake Error at CMakeLists.txt:18 (add_executable):
+  Cannot find source file:
+
+    chantel.cu
+
+  Tried extensions .c .C .c++ .cc .cpp .cxx .cu .mpp .m .M .mm .ixx .cppm .h
+  .hh .h++ .hm .hpp .hxx .in .txx .f .F .for .f77 .f90 .f95 .f03 .hip .ispc
+
+
+CMake Error at CMakeLists.txt:18 (add_executable):
+  No SOURCES given to target: chantel
+
+
+CMake Generate step failed.  Build files cannot be regenerated correctly.
