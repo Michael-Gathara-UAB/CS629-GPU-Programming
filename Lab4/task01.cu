@@ -20,8 +20,6 @@ __global__ void vectorAdd(int max) {
 	d_c[i] = d_a[i] + d_b[i];
 }
 
-
-
 int main(void) {
 	int *a, *b, *c, *c_ref;			// host copies of a, b, c
 //	int *d_a, *d_b, *d_c;			// device copies of a, b, c

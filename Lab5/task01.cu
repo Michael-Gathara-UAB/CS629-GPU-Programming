@@ -1,43 +1,57 @@
-#include <math.h>
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <vector_functions.h>
-#include <vector_types.h>
 
 #include "cuda_runtime.h"
 #include "device_launch_parameters.h"
 
 #define IMAGE_DIM 2048
 
-#define rnd(x) (x * rand() / RAND_MAX)
-#define INF 2e10f
-
 using uchar = unsigned char;
 
-void output_image_file(uchar *image);
+void output_image_file(uchar *image, const char *filename);
 void input_image_file(char *filename, uchar3 *image);
+void input_image_file_lab(const char *filename, uchar3 *image, uchar *r, uchar *g, uchar *b);
 void checkCUDAError(const char *msg);
 
-__global__ void image_to_grayscale(uchar3 *image, uchar *image_output) {
-    // Add your implementation here
+// grayscale_output = r * 0.21 + g * 0.72 + b * 0.07
+__global__ void image_to_grayscale_naive(uchar3 *image, uchar *image_output) {
+    int x = blockIdx.x * blockDim.x + threadIdx.x;
+    int y = blockIdx.y * blockDim.y + threadIdx.y;
+    int i = x + y * IMAGE_DIM;
+
+    uchar3 pixel = image[i];
+    image_output[i] =
+        static_cast<uchar>(0.21f * pixel.x + 0.72f * pixel.y + 0.07f * pixel.z);
 }
 
-/* Host code */
+__global__ void image_to_grayscale(uchar *r, uchar *g, uchar *b,
+                                   uchar *image_output) {
+    int x = blockIdx.x * blockDim.x + threadIdx.x;
+    int y = blockIdx.y * blockDim.y + threadIdx.y;
+    int i = x + y * IMAGE_DIM;
+
+    image_output[i] =
+        static_cast<uchar>(0.21f * r[i] + 0.72f * g[i] + 0.07f * b[i]);
+}
 
 int main(void) {
     unsigned int image_size, image_output_size;
     uchar3 *d_image, *h_image;
-    uchar *d_image_output, *h_image_output;
-    cudaEvent_t start, stop;
-    float ms;
+    uchar *h_image_output, *h_r, *h_g, *h_b;
+    uchar *d_image_output, *d_r, *d_g, *d_b;
+    cudaEvent_t start_naive, stop_naive, start_lab, stop_lab;
+    float ms_naive, ms_lab;
 
     image_size = IMAGE_DIM * IMAGE_DIM * sizeof(uchar3);
     image_output_size = IMAGE_DIM * IMAGE_DIM * sizeof(uchar);
 
     // create timers
-    cudaEventCreate(&start);
-    cudaEventCreate(&stop);
+    cudaEventCreate(&start_naive);
+    cudaEventCreate(&stop_naive);
+    cudaEventCreate(&start_lab);
+    cudaEventCreate(&stop_lab);
 
     // allocate memory on the GPU for the output image
     cudaMalloc((void **)&d_image, image_size);
@@ -58,12 +72,12 @@ int main(void) {
     dim3 threadsPerBlock(16, 16);
 
     // normal version
-    cudaEventRecord(start, 0);
-    image_to_grayscale<<<blocksPerGrid, threadsPerBlock>>>(d_image,
-                                                           d_image_output);
-    cudaEventRecord(stop, 0);
-    cudaEventSynchronize(stop);
-    cudaEventElapsedTime(&ms, start, stop);
+    cudaEventRecord(start_naive, 0);
+    image_to_grayscale_naive<<<blocksPerGrid, threadsPerBlock>>>(
+        d_image, d_image_output);
+    cudaEventRecord(stop_naive, 0);
+    cudaEventSynchronize(stop_naive);
+    cudaEventElapsedTime(&ms_naive, start_naive, stop_naive);
     checkCUDAError("kernel normal");
 
     // copy the image back from the GPU for output to file
@@ -72,29 +86,74 @@ int main(void) {
     checkCUDAError("CUDA memcpy from device");
 
     // output timings
-    printf("Execution time:");
-    printf("\t%f\n", ms);
+    printf("Naive Execution time:");
+    printf("\t%f\n", ms_naive);
 
     // output image
-    output_image_file(h_image_output);
+    output_image_file(h_image_output, "output_naive.ppm");
 
     // cleanup
-    cudaEventDestroy(start);
-    cudaEventDestroy(stop);
+    cudaEventDestroy(start_naive);
+    cudaEventDestroy(stop_naive);
     cudaFree(d_image);
+    cudaFree(d_image_output);
+
+    h_r = (uchar *)malloc(IMAGE_DIM * IMAGE_DIM);
+    h_g = (uchar *)malloc(IMAGE_DIM * IMAGE_DIM);
+    h_b = (uchar *)malloc(IMAGE_DIM * IMAGE_DIM);
+
+    input_image_file_lab("input.ppm", h_image, h_r, h_g, h_b);
+
+    cudaMalloc((void **)&d_r, IMAGE_DIM * IMAGE_DIM);
+    cudaMalloc((void **)&d_g, IMAGE_DIM * IMAGE_DIM);
+    cudaMalloc((void **)&d_b, IMAGE_DIM * IMAGE_DIM);
+    cudaMalloc((void **)&d_image_output, image_output_size);
+    checkCUDAError("CUDA malloc for lab version");
+
+    cudaMemcpy(d_r, h_r, IMAGE_DIM * IMAGE_DIM, cudaMemcpyHostToDevice);
+    cudaMemcpy(d_g, h_g, IMAGE_DIM * IMAGE_DIM, cudaMemcpyHostToDevice);
+    cudaMemcpy(d_b, h_b, IMAGE_DIM * IMAGE_DIM, cudaMemcpyHostToDevice);
+    checkCUDAError("CUDA memcpy to device for lab version");
+
+    cudaEventRecord(start_lab, 0);
+    image_to_grayscale<<<blocksPerGrid, threadsPerBlock>>>(d_r, d_g, d_b,
+                                                           d_image_output);
+    cudaEventRecord(stop_lab, 0);
+    cudaEventSynchronize(stop_lab);
+    cudaEventElapsedTime(&ms_lab, start_lab, stop_lab);
+    checkCUDAError("kernel lab execution");
+
+    // Copy back the result and save it to a file
+    cudaMemcpy(h_image_output, d_image_output, image_output_size,
+               cudaMemcpyDeviceToHost);
+    checkCUDAError("CUDA memcpy from device to host for lab version");
+
+    printf("Lab Execution time:");
+    printf("\t%f\n", ms_lab);
+
+    output_image_file(h_image_output, "output_lab.ppm");
+
+    cudaEventDestroy(start_lab);
+    cudaEventDestroy(stop_lab);
+    cudaFree(d_r);
+    cudaFree(d_g);
+    cudaFree(d_b);
     cudaFree(d_image_output);
     free(h_image);
     free(h_image_output);
+    free(h_r);
+    free(h_g);
+    free(h_b);
 
     return 0;
 }
 
-void output_image_file(uchar *image) {
+void output_image_file(uchar *image, const char *filename) {
     FILE *f;  // output file handle
 
     // open the output file and write header info for PPM filetype
-    const char *input_file = "output.ppm";
-    f = fopen(input_file, "wb");
+    // const char *input_file = "output.ppm";
+    f = fopen(filename, "wb");
     if (f == NULL) {
         fprintf(stderr, "Error opening 'output.ppm' output file\n");
         exit(1);
@@ -138,6 +197,30 @@ void input_image_file(char *filename, uchar3 *image) {
             fread(&image[i], sizeof(unsigned char), 3, f);
         }
     }
+
+    fclose(f);
+}
+
+void input_image_file_lab(const char *filename, uchar3 *image, uchar *r, uchar *g, uchar *b) {
+    FILE *f = fopen(filename, "rb");
+    if (f == NULL) {
+        fprintf(stderr, "Error opening input file '%s'\n", filename);
+        exit(1);
+    }
+
+    char header[256];
+    int maxval;
+    fscanf(f, "%s", header);
+    fscanf(f, "%*d %*d");
+    fscanf(f, "%d", &maxval);
+    while (fgetc(f) != '\n');  
+
+    for (int i = 0; i < IMAGE_DIM * IMAGE_DIM; i++) {
+        r[i] = image[i].x;
+        g[i] = image[i].y;
+        b[i] = image[i].z;
+    }
+
 
     fclose(f);
 }
