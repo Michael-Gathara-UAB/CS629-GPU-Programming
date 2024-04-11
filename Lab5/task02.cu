@@ -9,9 +9,6 @@
 
 
 #define IMAGE_DIM 2048
-constexpr int radius_one = 1;
-constexpr int radius_two = 2;
-constexpr int radius_three = 3;
 
 #define rnd( x ) (x * rand() / RAND_MAX)
 #define INF     2e10f
@@ -23,188 +20,342 @@ void input_image_file(char* filename, uchar3* image);
 void checkCUDAError(const char *msg);
 
 
-__global__ void image_blur_A(uchar3 *image, uchar3 *image_output) {
+__global__ void image_blur_A(uchar3 *image, uchar3 *image_output, int radius_one) {
 	// Add your implementation here
-	extern __shared__ uchar3 shared_image[];
+	// extern __shared__ uchar3 shared_image[];
+    extern __shared__ uchar shared_memory[];
+
+    uchar3* shared_image = (uchar3*)shared_memory;
+    uchar3* shared_output = (uchar3*)&shared_image[(blockDim.x + 2 * radius_one) * (blockDim.y + 2 * radius_one)];
 
     int local_x = threadIdx.x + radius_one;
     int local_y = threadIdx.y + radius_one;
+
     int global_x = blockIdx.x * blockDim.x + threadIdx.x;
     int global_y = blockIdx.y * blockDim.y + threadIdx.y;
+
+    // wrapping indices in case outta bounds
+    global_x = (global_x + IMAGE_DIM) % IMAGE_DIM;
+    global_y = (global_y + IMAGE_DIM) % IMAGE_DIM;
+
     int global_idx = global_x + global_y * IMAGE_DIM;
     int local_idx = local_x + local_y * (blockDim.x + 2 * radius_one);
 
+    // this is the central pix -> shared mem
     shared_image[local_idx] = image[global_idx];
 
-    if (threadIdx.x < radius_one) {
-        int halo_idx = (global_x - radius_one + IMAGE_DIM) % IMAGE_DIM + global_y * IMAGE_DIM;
-        shared_image[local_idx - radius_one] = image[halo_idx];
+    // shared mem halo pix boundary wrapping
+    // https://stackoverflow.com/questions/5715220/dealing-with-boundary-conditions-halo-regions-in-cuda
+    // https://stackoverflow.com/questions/28038074/handling-boundary-conditions-in-opencl-cuda
+    // https://stackoverflow.com/questions/75883944/wrapping-the-cuda-kernel-function-with-template
+    // https://digitalcommons.calpoly.edu/cgi/viewcontent.cgi?article=2473&context=theses
+
+    // loading halo corner pixs
+    if (threadIdx.x < radius_one && threadIdx.y < radius_one) {
+        shared_image[local_idx - (radius_one + radius_one * (blockDim.x + 2 * radius_one))] = 
+            image[(global_x - radius_one + IMAGE_DIM) % IMAGE_DIM + ((global_y - radius_one + IMAGE_DIM) % IMAGE_DIM) * IMAGE_DIM];
     }
-    
-	if (threadIdx.x >= blockDim.x - radius_one) {
-        int halo_idx = (global_x + radius_one) % IMAGE_DIM + global_y * IMAGE_DIM;
-        shared_image[local_idx + radius_one] = image[halo_idx];
+    if (threadIdx.x >= blockDim.x - radius_one && threadIdx.y < radius_one) {
+        shared_image[local_idx + radius_one - radius_one * (blockDim.x + 2 * radius_one)] = 
+            image[(global_x + radius_one) % IMAGE_DIM + ((global_y - radius_one + IMAGE_DIM) % IMAGE_DIM) * IMAGE_DIM];
     }
-    
-	if (threadIdx.y < radius_one) {
-        int halo_idx = global_x + ((global_y - radius_one + IMAGE_DIM) % IMAGE_DIM) * IMAGE_DIM;
-        shared_image[local_idx - radius_one * (blockDim.x + 2 * radius_one)] = image[halo_idx];
+    if (threadIdx.x < radius_one && threadIdx.y >= blockDim.y - radius_one) {
+        shared_image[local_idx - radius_one + radius_one * (blockDim.x + 2 * radius_one)] = 
+            image[(global_x - radius_one + IMAGE_DIM) % IMAGE_DIM + ((global_y + radius_one) % IMAGE_DIM) * IMAGE_DIM];
+    }
+    if (threadIdx.x >= blockDim.x - radius_one && threadIdx.y >= blockDim.y - radius_one) {
+        shared_image[local_idx + radius_one + radius_one * (blockDim.x + 2 * radius_one)] = 
+            image[(global_x + radius_one) % IMAGE_DIM + ((global_y + radius_one) % IMAGE_DIM) * IMAGE_DIM];
     }
 
+    // up
+    if (threadIdx.y < radius_one) {
+        int halo_idx = global_x + ((global_y - radius_one + IMAGE_DIM) % IMAGE_DIM) * IMAGE_DIM;
+        shared_image[local_x + (local_y - radius_one) * (blockDim.x + 2 * radius_one)] = image[halo_idx];
+    }
+    // bottom
     if (threadIdx.y >= blockDim.y - radius_one) {
         int halo_idx = global_x + ((global_y + radius_one) % IMAGE_DIM) * IMAGE_DIM;
-        shared_image[local_idx + radius_one * (blockDim.x + 2 * radius_one)] = image[halo_idx];
+        shared_image[local_x + (local_y + radius_one) * (blockDim.x + 2 * radius_one)] = image[halo_idx];
+    }
+    // left
+    if (threadIdx.x < radius_one) {
+        int halo_idx = ((global_x - radius_one + IMAGE_DIM) % IMAGE_DIM) + global_y * IMAGE_DIM;
+        shared_image[(local_x - radius_one) + local_y * (blockDim.x + 2 * radius_one)] = image[halo_idx];
+    }
+    // right
+    if (threadIdx.x >= blockDim.x - radius_one) {
+        int halo_idx = ((global_x + radius_one) % IMAGE_DIM) + global_y * IMAGE_DIM;
+        shared_image[(local_x + radius_one) + local_y * (blockDim.x + 2 * radius_one)] = image[halo_idx];
     }
 
     __syncthreads();
 
-    float3 sum = make_float3(0.0f, 0.0f, 0.0f);
-    float factor = 1.0f / ((radius_one * 2 + 1) * (radius_one * 2 + 1));
+    // actually blurring here 
+    float3 pixel_sum = make_float3(0.0f, 0.0f, 0.0f);
+    float weightSum = 0.0f;
+    float weight = 1.0f / (float)((2 * radius_one + 1) * (2 * radius_one + 1));
 
     for (int dy = -radius_one; dy <= radius_one; dy++) {
         for (int dx = -radius_one; dx <= radius_one; dx++) {
             int idx = (local_x + dx) + (local_y + dy) * (blockDim.x + 2 * radius_one);
             uchar3 pixel = shared_image[idx];
-            sum.x += pixel.x;
-            sum.y += pixel.y;
-            sum.z += pixel.z;
+            pixel_sum.x += pixel.x * weight;
+            pixel_sum.y += pixel.y * weight;
+            pixel_sum.z += pixel.z * weight;
+            weightSum += weight;
+            // printf("Weight sum: %f and weight %f\n", weightSum, weight);  
         }
     }
 
-    sum.x *= factor;
-    sum.y *= factor;
-    sum.z *= factor;
+    // weightSum = 1.0f / weightSum;
+    weightSum = weightSum + 1e-5f;
+    pixel_sum.x /= weightSum;
+    pixel_sum.y /= weightSum;
+    pixel_sum.z /= weightSum;
 
-    if (local_x < blockDim.x && local_y < blockDim.y) {  
-        uchar3 output_pixel;
-        output_pixel.x = static_cast<uchar>(sum.x);
-        output_pixel.y = static_cast<uchar>(sum.y);
-        output_pixel.z = static_cast<uchar>(sum.z);
-        image_output[global_idx] = output_pixel;
+    shared_output[threadIdx.y * blockDim.x + threadIdx.x] = make_uchar3(
+        static_cast<uchar>(pixel_sum.x),
+        static_cast<uchar>(pixel_sum.y),
+        static_cast<uchar>(pixel_sum.z));
+
+    __syncthreads();
+
+    
+    int write_x = blockIdx.y * blockDim.y + threadIdx.x;
+    int write_y = blockIdx.x * blockDim.x + threadIdx.y;
+    int write_idx = write_x + write_y * gridDim.x * blockDim.x;
+
+    // to write result
+    if (threadIdx.x < blockDim.x && threadIdx.y < blockDim.y) {
+        int write_idx = global_y * IMAGE_DIM + global_x; // Coalesced global memory write
+        image_output[write_idx] = shared_output[threadIdx.y * blockDim.x + threadIdx.x];
     }
 }
 
-__global__ void image_blur_B(uchar3 *image, uchar3 *image_output) {
-	// Add your implementation here
-	extern __shared__ uchar3 shared_image[];
+__global__ void image_blur_B(uchar3 *image, uchar3 *image_output, int radius_one) {
+		// Add your implementation here
+	// extern __shared__ uchar3 shared_image[];
+    extern __shared__ uchar shared_memory[];
 
-    int local_x = threadIdx.x + radius_two;
-    int local_y = threadIdx.y + radius_two;
+    uchar3* shared_image = (uchar3*)shared_memory;
+    uchar3* shared_output = (uchar3*)&shared_image[(blockDim.x + 2 * radius_one) * (blockDim.y + 2 * radius_one)];
+
+    int local_x = threadIdx.x + radius_one;
+    int local_y = threadIdx.y + radius_one;
+
     int global_x = blockIdx.x * blockDim.x + threadIdx.x;
     int global_y = blockIdx.y * blockDim.y + threadIdx.y;
-    int global_idx = global_x + global_y * IMAGE_DIM;
-    int local_idx = local_x + local_y * (blockDim.x + 2 * radius_two);
 
+    // wrapping indices in case outta bounds
+    global_x = (global_x + IMAGE_DIM) % IMAGE_DIM;
+    global_y = (global_y + IMAGE_DIM) % IMAGE_DIM;
+
+    int global_idx = global_x + global_y * IMAGE_DIM;
+    int local_idx = local_x + local_y * (blockDim.x + 2 * radius_one);
+
+    // this is the central pix -> shared mem
     shared_image[local_idx] = image[global_idx];
 
-    if (threadIdx.x < radius_two) {
-        int halo_idx = (global_x - radius_two + IMAGE_DIM) % IMAGE_DIM + global_y * IMAGE_DIM;
-        shared_image[local_idx - radius_two] = image[halo_idx];
+    // shared mem halo pix boundary wrapping
+    // https://stackoverflow.com/questions/5715220/dealing-with-boundary-conditions-halo-regions-in-cuda
+    // https://stackoverflow.com/questions/28038074/handling-boundary-conditions-in-opencl-cuda
+    // https://stackoverflow.com/questions/75883944/wrapping-the-cuda-kernel-function-with-template
+    // https://digitalcommons.calpoly.edu/cgi/viewcontent.cgi?article=2473&context=theses
+
+    // loading halo corner pixs
+    if (threadIdx.x < radius_one && threadIdx.y < radius_one) {
+        shared_image[local_idx - (radius_one + radius_one * (blockDim.x + 2 * radius_one))] = 
+            image[(global_x - radius_one + IMAGE_DIM) % IMAGE_DIM + ((global_y - radius_one + IMAGE_DIM) % IMAGE_DIM) * IMAGE_DIM];
     }
-    
-	if (threadIdx.x >= blockDim.x - radius_two) {
-        int halo_idx = (global_x + radius_two) % IMAGE_DIM + global_y * IMAGE_DIM;
-        shared_image[local_idx + radius_two] = image[halo_idx];
+    if (threadIdx.x >= blockDim.x - radius_one && threadIdx.y < radius_one) {
+        shared_image[local_idx + radius_one - radius_one * (blockDim.x + 2 * radius_one)] = 
+            image[(global_x + radius_one) % IMAGE_DIM + ((global_y - radius_one + IMAGE_DIM) % IMAGE_DIM) * IMAGE_DIM];
     }
-    
-	if (threadIdx.y < radius_two) {
-        int halo_idx = global_x + ((global_y - radius_two + IMAGE_DIM) % IMAGE_DIM) * IMAGE_DIM;
-        shared_image[local_idx - radius_two * (blockDim.x + 2 * radius_two)] = image[halo_idx];
+    if (threadIdx.x < radius_one && threadIdx.y >= blockDim.y - radius_one) {
+        shared_image[local_idx - radius_one + radius_one * (blockDim.x + 2 * radius_one)] = 
+            image[(global_x - radius_one + IMAGE_DIM) % IMAGE_DIM + ((global_y + radius_one) % IMAGE_DIM) * IMAGE_DIM];
+    }
+    if (threadIdx.x >= blockDim.x - radius_one && threadIdx.y >= blockDim.y - radius_one) {
+        shared_image[local_idx + radius_one + radius_one * (blockDim.x + 2 * radius_one)] = 
+            image[(global_x + radius_one) % IMAGE_DIM + ((global_y + radius_one) % IMAGE_DIM) * IMAGE_DIM];
     }
 
-    if (threadIdx.y >= blockDim.y - radius_two) {
-        int halo_idx = global_x + ((global_y + radius_two) % IMAGE_DIM) * IMAGE_DIM;
-        shared_image[local_idx + radius_two * (blockDim.x + 2 * radius_two)] = image[halo_idx];
+    // up
+    if (threadIdx.y < radius_one) {
+        int halo_idx = global_x + ((global_y - radius_one + IMAGE_DIM) % IMAGE_DIM) * IMAGE_DIM;
+        shared_image[local_x + (local_y - radius_one) * (blockDim.x + 2 * radius_one)] = image[halo_idx];
+    }
+    // bottom
+    if (threadIdx.y >= blockDim.y - radius_one) {
+        int halo_idx = global_x + ((global_y + radius_one) % IMAGE_DIM) * IMAGE_DIM;
+        shared_image[local_x + (local_y + radius_one) * (blockDim.x + 2 * radius_one)] = image[halo_idx];
+    }
+    // left
+    if (threadIdx.x < radius_one) {
+        int halo_idx = ((global_x - radius_one + IMAGE_DIM) % IMAGE_DIM) + global_y * IMAGE_DIM;
+        shared_image[(local_x - radius_one) + local_y * (blockDim.x + 2 * radius_one)] = image[halo_idx];
+    }
+    // right
+    if (threadIdx.x >= blockDim.x - radius_one) {
+        int halo_idx = ((global_x + radius_one) % IMAGE_DIM) + global_y * IMAGE_DIM;
+        shared_image[(local_x + radius_one) + local_y * (blockDim.x + 2 * radius_one)] = image[halo_idx];
     }
 
     __syncthreads();
 
-    float3 sum = make_float3(0.0f, 0.0f, 0.0f);
-    float factor = 1.0f / ((radius_two * 2 + 1) * (radius_two * 2 + 1));
+    // actually blurring here 
+    float3 pixel_sum = make_float3(0.0f, 0.0f, 0.0f);
+    float weightSum = 0.0f;
+    float weight = 1.0f / (float)((2 * radius_one + 1) * (2 * radius_one + 1));
 
-    for (int dy = -radius_two; dy <= radius_two; dy++) {
-        for (int dx = -radius_two; dx <= radius_two; dx++) {
-            int idx = (local_x + dx) + (local_y + dy) * (blockDim.x + 2 * radius_two);
+    for (int dy = -radius_one; dy <= radius_one; dy++) {
+        for (int dx = -radius_one; dx <= radius_one; dx++) {
+            int idx = (local_x + dx) + (local_y + dy) * (blockDim.x + 2 * radius_one);
             uchar3 pixel = shared_image[idx];
-            sum.x += pixel.x;
-            sum.y += pixel.y;
-            sum.z += pixel.z;
+            pixel_sum.x += pixel.x * weight;
+            pixel_sum.y += pixel.y * weight;
+            pixel_sum.z += pixel.z * weight;
+            weightSum += weight;
+            // printf("Weight sum: %f and weight %f\n", weightSum, weight);  
         }
     }
 
-    sum.x *= factor;
-    sum.y *= factor;
-    sum.z *= factor;
+    // weightSum = 1.0f / weightSum;
+    weightSum = weightSum + 1e-5f;
+    pixel_sum.x /= weightSum;
+    pixel_sum.y /= weightSum;
+    pixel_sum.z /= weightSum;
 
-    if (local_x < blockDim.x && local_y < blockDim.y) {  
-        uchar3 output_pixel;
-        output_pixel.x = static_cast<uchar>(sum.x);
-        output_pixel.y = static_cast<uchar>(sum.y);
-        output_pixel.z = static_cast<uchar>(sum.z);
-        image_output[global_idx] = output_pixel;
+    shared_output[threadIdx.y * blockDim.x + threadIdx.x] = make_uchar3(
+        static_cast<uchar>(pixel_sum.x),
+        static_cast<uchar>(pixel_sum.y),
+        static_cast<uchar>(pixel_sum.z));
+
+    __syncthreads();
+
+    
+    int write_x = blockIdx.y * blockDim.y + threadIdx.x;
+    int write_y = blockIdx.x * blockDim.x + threadIdx.y;
+    int write_idx = write_x + write_y * gridDim.x * blockDim.x;
+
+    // to write result
+    if (threadIdx.x < blockDim.x && threadIdx.y < blockDim.y) {
+        int write_idx = global_y * IMAGE_DIM + global_x; // Coalesced global memory write
+        image_output[write_idx] = shared_output[threadIdx.y * blockDim.x + threadIdx.x];
     }
-
-	
 }
 
-__global__ void image_blur_C(uchar3 *image, uchar3 *image_output) {
-	// Add your implementation here
-	extern __shared__ uchar3 shared_image[];
+__global__ void image_blur_C(uchar3 *image, uchar3 *image_output, int radius_one) {
+		// Add your implementation here
+	// extern __shared__ uchar3 shared_image[];
+    extern __shared__ uchar shared_memory[];
 
-    int local_x = threadIdx.x + radius_three;
-    int local_y = threadIdx.y + radius_three;
+    uchar3* shared_image = (uchar3*)shared_memory;
+    uchar3* shared_output = (uchar3*)&shared_image[(blockDim.x + 2 * radius_one) * (blockDim.y + 2 * radius_one)];
+
+    int local_x = threadIdx.x + radius_one;
+    int local_y = threadIdx.y + radius_one;
+
     int global_x = blockIdx.x * blockDim.x + threadIdx.x;
     int global_y = blockIdx.y * blockDim.y + threadIdx.y;
-    int global_idx = global_x + global_y * IMAGE_DIM;
-    int local_idx = local_x + local_y * (blockDim.x + 2 * radius_three);
 
+    // wrapping indices in case outta bounds
+    global_x = (global_x + IMAGE_DIM) % IMAGE_DIM;
+    global_y = (global_y + IMAGE_DIM) % IMAGE_DIM;
+
+    int global_idx = global_x + global_y * IMAGE_DIM;
+    int local_idx = local_x + local_y * (blockDim.x + 2 * radius_one);
+
+    // this is the central pix -> shared mem
     shared_image[local_idx] = image[global_idx];
 
-    if (threadIdx.x < radius_three) {
-        int halo_idx = (global_x - radius_three + IMAGE_DIM) % IMAGE_DIM + global_y * IMAGE_DIM;
-        shared_image[local_idx - radius_three] = image[halo_idx];
+    // shared mem halo pix boundary wrapping
+    // https://stackoverflow.com/questions/5715220/dealing-with-boundary-conditions-halo-regions-in-cuda
+    // https://stackoverflow.com/questions/28038074/handling-boundary-conditions-in-opencl-cuda
+    // https://stackoverflow.com/questions/75883944/wrapping-the-cuda-kernel-function-with-template
+    // https://digitalcommons.calpoly.edu/cgi/viewcontent.cgi?article=2473&context=theses
+
+    // loading halo corner pixs
+    if (threadIdx.x < radius_one && threadIdx.y < radius_one) {
+        shared_image[local_idx - (radius_one + radius_one * (blockDim.x + 2 * radius_one))] = 
+            image[(global_x - radius_one + IMAGE_DIM) % IMAGE_DIM + ((global_y - radius_one + IMAGE_DIM) % IMAGE_DIM) * IMAGE_DIM];
     }
-    
-	if (threadIdx.x >= blockDim.x - radius_three) {
-        int halo_idx = (global_x + radius_three) % IMAGE_DIM + global_y * IMAGE_DIM;
-        shared_image[local_idx + radius_three] = image[halo_idx];
+    if (threadIdx.x >= blockDim.x - radius_one && threadIdx.y < radius_one) {
+        shared_image[local_idx + radius_one - radius_one * (blockDim.x + 2 * radius_one)] = 
+            image[(global_x + radius_one) % IMAGE_DIM + ((global_y - radius_one + IMAGE_DIM) % IMAGE_DIM) * IMAGE_DIM];
     }
-    
-	if (threadIdx.y < radius_three) {
-        int halo_idx = global_x + ((global_y - radius_three + IMAGE_DIM) % IMAGE_DIM) * IMAGE_DIM;
-        shared_image[local_idx - radius_three * (blockDim.x + 2 * radius_three)] = image[halo_idx];
+    if (threadIdx.x < radius_one && threadIdx.y >= blockDim.y - radius_one) {
+        shared_image[local_idx - radius_one + radius_one * (blockDim.x + 2 * radius_one)] = 
+            image[(global_x - radius_one + IMAGE_DIM) % IMAGE_DIM + ((global_y + radius_one) % IMAGE_DIM) * IMAGE_DIM];
+    }
+    if (threadIdx.x >= blockDim.x - radius_one && threadIdx.y >= blockDim.y - radius_one) {
+        shared_image[local_idx + radius_one + radius_one * (blockDim.x + 2 * radius_one)] = 
+            image[(global_x + radius_one) % IMAGE_DIM + ((global_y + radius_one) % IMAGE_DIM) * IMAGE_DIM];
     }
 
-    if (threadIdx.y >= blockDim.y - radius_three) {
-        int halo_idx = global_x + ((global_y + radius_three) % IMAGE_DIM) * IMAGE_DIM;
-        shared_image[local_idx + radius_three * (blockDim.x + 2 * radius_three)] = image[halo_idx];
+    // up
+    if (threadIdx.y < radius_one) {
+        int halo_idx = global_x + ((global_y - radius_one + IMAGE_DIM) % IMAGE_DIM) * IMAGE_DIM;
+        shared_image[local_x + (local_y - radius_one) * (blockDim.x + 2 * radius_one)] = image[halo_idx];
+    }
+    // bottom
+    if (threadIdx.y >= blockDim.y - radius_one) {
+        int halo_idx = global_x + ((global_y + radius_one) % IMAGE_DIM) * IMAGE_DIM;
+        shared_image[local_x + (local_y + radius_one) * (blockDim.x + 2 * radius_one)] = image[halo_idx];
+    }
+    // left
+    if (threadIdx.x < radius_one) {
+        int halo_idx = ((global_x - radius_one + IMAGE_DIM) % IMAGE_DIM) + global_y * IMAGE_DIM;
+        shared_image[(local_x - radius_one) + local_y * (blockDim.x + 2 * radius_one)] = image[halo_idx];
+    }
+    // right
+    if (threadIdx.x >= blockDim.x - radius_one) {
+        int halo_idx = ((global_x + radius_one) % IMAGE_DIM) + global_y * IMAGE_DIM;
+        shared_image[(local_x + radius_one) + local_y * (blockDim.x + 2 * radius_one)] = image[halo_idx];
     }
 
     __syncthreads();
 
-    float3 sum = make_float3(0.0f, 0.0f, 0.0f);
-    float factor = 1.0f / ((radius_three * 2 + 1) * (radius_three * 2 + 1));
+    // actually blurring here 
+    float3 pixel_sum = make_float3(0.0f, 0.0f, 0.0f);
+    float weightSum = 0.0f;
+    float weight = 1.0f / (float)((2 * radius_one + 1) * (2 * radius_one + 1));
 
-    for (int dy = -radius_three; dy <= radius_three; dy++) {
-        for (int dx = -radius_three; dx <= radius_three; dx++) {
-            int idx = (local_x + dx) + (local_y + dy) * (blockDim.x + 2 * radius_three);
+    for (int dy = -radius_one; dy <= radius_one; dy++) {
+        for (int dx = -radius_one; dx <= radius_one; dx++) {
+            int idx = (local_x + dx) + (local_y + dy) * (blockDim.x + 2 * radius_one);
             uchar3 pixel = shared_image[idx];
-            sum.x += pixel.x;
-            sum.y += pixel.y;
-            sum.z += pixel.z;
+            pixel_sum.x += pixel.x * weight;
+            pixel_sum.y += pixel.y * weight;
+            pixel_sum.z += pixel.z * weight;
+            weightSum += weight;
+            // printf("Weight sum: %f and weight %f\n", weightSum, weight);  
         }
     }
 
-    sum.x *= factor;
-    sum.y *= factor;
-    sum.z *= factor;
+    // weightSum = 1.0f / weightSum;
+    weightSum = weightSum + 1e-5f;
+    pixel_sum.x /= weightSum;
+    pixel_sum.y /= weightSum;
+    pixel_sum.z /= weightSum;
 
-    if (local_x < blockDim.x && local_y < blockDim.y) {  
-        uchar3 output_pixel;
-        output_pixel.x = static_cast<uchar>(sum.x);
-        output_pixel.y = static_cast<uchar>(sum.y);
-        output_pixel.z = static_cast<uchar>(sum.z);
-        image_output[global_idx] = output_pixel;
+    shared_output[threadIdx.y * blockDim.x + threadIdx.x] = make_uchar3(
+        static_cast<uchar>(pixel_sum.x),
+        static_cast<uchar>(pixel_sum.y),
+        static_cast<uchar>(pixel_sum.z));
+
+    __syncthreads();
+
+    
+    int write_x = blockIdx.y * blockDim.y + threadIdx.x;
+    int write_y = blockIdx.x * blockDim.x + threadIdx.y;
+    int write_idx = write_x + write_y * gridDim.x * blockDim.x;
+
+    // to write result
+    if (threadIdx.x < blockDim.x && threadIdx.y < blockDim.y) {
+        int write_idx = global_y * IMAGE_DIM + global_x; // Coalesced global memory write
+        image_output[write_idx] = shared_output[threadIdx.y * blockDim.x + threadIdx.x];
     }
 }
 
@@ -238,20 +389,34 @@ int main(void) {
 	checkCUDAError("CUDA memcpy to device");
 
 	//cuda layout and execution
-	dim3    blocksPerGrid(IMAGE_DIM / 16, IMAGE_DIM / 16);
-	dim3    threadsPerBlock(16, 16);
+	dim3 blocksPerGrid(IMAGE_DIM / 16, IMAGE_DIM / 16);
+	dim3 threadsPerBlock(16, 16);
 
 	// normal version
 	cudaEventRecord(start, 0);
 	// Uncomment each line to test each kernel
 	// image_blur_A << <blocksPerGrid, threadsPerBlock >> >(d_image, d_image_output);
-	image_blur_A<<<blocksPerGrid, threadsPerBlock, (16 + 2 * radius_one) * (16 + 2 * radius_one) * sizeof(uchar3)>>>(d_image, d_image_output);
+    int radius_one = 2;
+    size_t sharedMemSize = ((threadsPerBlock.x + 2 * radius_one) * (threadsPerBlock.y + 2 * radius_one) + (threadsPerBlock.x * threadsPerBlock.y)) * sizeof(uchar3);
+    // printf("Shared memory size: %d\n", sharedMemSize);
+    image_blur_A<<<blocksPerGrid, threadsPerBlock, sharedMemSize>>>(d_image, d_image_output, radius_one);
+
 
 	// image_blur_B << <blocksPerGrid, threadsPerBlock >> >(d_image, d_image_output);
-	image_blur_B<<<blocksPerGrid, threadsPerBlock, (16 + 2 * radius_two) * (16 + 2 * radius_two) * sizeof(uchar3)>>>(d_image, d_image_output);
+	// image_blur_B<<<blocksPerGrid, threadsPerBlock, (16 + 2 * radius_two) * (16 + 2 * radius_two) * sizeof(uchar3)>>>(d_image, d_image_output);
+    int radius_two = 2;
+    sharedMemSize = ((threadsPerBlock.x + 2 * radius_two) * (threadsPerBlock.y + 2 * radius_two) + (threadsPerBlock.x * threadsPerBlock.y)) * sizeof(uchar3);
+    // printf("Shared memory size: %d\n", sharedMemSize);
+    image_blur_B<<<blocksPerGrid, threadsPerBlock, sharedMemSize>>>(d_image, d_image_output, radius_two);
 
-	// image_blur_C << <blocksPerGrid, threadsPerBlock >> >(d_image, d_image_output);
-	image_blur_C<<<blocksPerGrid, threadsPerBlock, (16 + 2 * radius_three) * (16 + 2 * radius_three) * sizeof(uchar3)>>>(d_image, d_image_output);
+
+	// // image_blur_C << <blocksPerGrid, threadsPerBlock >> >(d_image, d_image_output);
+	// image_blur_C<<<blocksPerGrid, threadsPerBlock, (16 + 2 * radius_three) * (16 + 2 * radius_three) * sizeof(uchar3)>>>(d_image, d_image_output);
+    int radius_three = 3;
+    sharedMemSize = ((threadsPerBlock.x + 2 * radius_three) * (threadsPerBlock.y + 2 * radius_three) + (threadsPerBlock.x * threadsPerBlock.y)) * sizeof(uchar3);
+    // printf("Shared memory size: %d\n", sharedMemSize);
+    image_blur_C<<<blocksPerGrid, threadsPerBlock, sharedMemSize>>>(d_image, d_image_output, radius_three);
+
 	cudaEventRecord(stop, 0);
 	cudaEventSynchronize(stop);
 	cudaEventElapsedTime(&ms, start, stop);
