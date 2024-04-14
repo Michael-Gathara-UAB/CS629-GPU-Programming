@@ -335,10 +335,10 @@ __global__ void image_blur_C(uchar3 *image, uchar3 *image_output, int radius_one
     }
 
     // weightSum = 1.0f / weightSum;
-    weightSum = weightSum + 1e-5f;
-    pixel_sum.x /= weightSum;
-    pixel_sum.y /= weightSum;
-    pixel_sum.z /= weightSum;
+    // weightSum = weightSum + 1e-5f;
+    // pixel_sum.x /= weightSum;
+    // pixel_sum.y /= weightSum;
+    // pixel_sum.z /= weightSum;
 
     shared_output[threadIdx.y * blockDim.x + threadIdx.x] = make_uchar3(
         static_cast<uchar>(pixel_sum.x),
