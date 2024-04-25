@@ -24,39 +24,41 @@ void generate_data(char* data, unsigned int length) {
     }
 }
 
+// took this from the slides, week 11 slide 53
 __global__ void GPU_histogram(char* data, unsigned int length,
                               unsigned int* histo) {
     // Task 1.1 Add your implementation here
-    __shared__ unsigned int histo_priv[HISTO_SIZE];
-
-    if (threadIdx.x < HISTO_SIZE) {
-        histo_priv[threadIdx.x] = 0;
+    unsigned int i = blockIdx.x * blockDim.x + threadIdx.x;
+    if (i < length) {
+        int alph = data[i] - 'a';
+        if (alph >= 0 && alph < 26) {
+            atomicAdd(&histo[blockIdx.x * HISTO_SIZE + alph / 4], 1);
+        }
+        // if (alph >= 0 && alph < 26) {
+        //     atomicAdd(&histo[alph / 4], 1);
+        // }
+    
     }
-
-    __syncthreads();
-
-    int i = blockIdx.x * blockDim.x + threadIdx.x;
-    int to_com = blockDim.x * gridDim.x;
-    while (i < length) {
-        unsigned char val = data[i];
-        atomicAdd(&histo_priv[val], 1);
-        i += to_com;
-    }
-
-    __syncthreads();
-
-    if (threadIdx.x < HISTO_SIZE) {
-        atomicAdd(&histo[threadIdx.x], histo_priv[threadIdx.x]);
+    if (blockIdx.x > 0) {
+        __syncthreads();
+        for (unsigned int bin = threadIdx.x; bin < HISTO_SIZE; bin += blockDim.x) {
+            unsigned binVal = histo[blockIdx.x * HISTO_SIZE + bin];
+            if (binVal > 0) {
+                atomicAdd(&histo[bin], binVal);
+            }
+        }
     }
 }
 
+// took this from the slides, week 11 slide 38
 void CPU_histogram(char* data, unsigned int length, unsigned int* histo) {
     // Task 1.2 Add a CPU implementation for verification
-    memset(histo, 0, HISTO_SIZE * sizeof(unsigned int));
+    for (unsigned int i = 0; i < length; ++i) {
+        int alph = data[i] - 'a';
+        if (alph >= 0 && alph < 26) {
+            histo[alph / 4]++;
+        } 
 
-    for (int i = 0; i < length; ++i) {
-        unsigned char val = data[i];
-        histo[val]++;
     }
 }
 
